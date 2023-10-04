@@ -3,15 +3,18 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static model.Cafe.CafeTag.*;
+import static model.MenuItem.ItemTag.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CafeTest {
-    Cafe testCafe;
-    MenuItem testItemA;
-    MenuItem testItemB;
-    MenuItem testItemC;
+    private Cafe testCafe;
+    private MenuItem testItemA;
+    private MenuItem testItemB;
+    private MenuItem testItemC;
 
     @BeforeEach
     void runBefore() {
@@ -77,6 +80,42 @@ class CafeTest {
 
         testCafe.removeItem(testItemA);
         assertEquals(0, testCafe.getItems().size());
+    }
+
+    @Test
+    void testNoItemsWithTag() {
+        testItemA.addTag(ICED);
+        testItemA.addTag(BITTER);
+        testItemB.addTag(SWEET);
+
+        testCafe.addItem(testItemA);
+        testCafe.addItem(testItemB);
+
+        List<MenuItem> result = testCafe.itemsByTag(SAVOURY);
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    void testItemsWithTag() {
+        testItemA.addTag(ICED);
+        testItemA.addTag(BITTER);
+        testItemB.addTag(SWEET);
+        testItemC.addTag(ICED);
+        testItemC.addTag(SWEET);
+
+        testCafe.addItem(testItemA);
+        testCafe.addItem(testItemB);
+        testCafe.addItem(testItemC);
+
+        List<MenuItem> result = testCafe.itemsByTag(SWEET);
+        assertEquals(2, result.size());
+        assertTrue(result.contains(testItemB));
+        assertTrue(result.contains(testItemC));
+
+        result = testCafe.itemsByTag(ICED);
+        assertEquals(2, result.size());
+        assertTrue(result.contains(testItemA));
+        assertTrue(result.contains(testItemC));
     }
 
     @Test

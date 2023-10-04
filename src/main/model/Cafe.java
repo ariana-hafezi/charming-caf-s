@@ -52,6 +52,19 @@ public class Cafe {
         items.remove(item);
     }
 
+    // EFFECTS: returns the menu items from this cafe that have been tagged with the given tag
+    public List<MenuItem> itemsByTag(MenuItem.ItemTag tag) {
+        List<MenuItem> result = new ArrayList<>();
+
+        for (MenuItem item : items) {
+            Set<MenuItem.ItemTag> tags = item.getTags();
+            if (tags.contains(tag)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
     // EFFECTS: returns the average rating of every item rated at a cafe to one decimal place
     public double calculateAverageRating() {
         int numItems = 0;
