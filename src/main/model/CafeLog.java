@@ -45,7 +45,7 @@ public class CafeLog {
         List<Cafe> sortCafes = new ArrayList<>();
         sortCafes.addAll(cafes);
 
-        sortCafes.sort(new SortByAverageRating());
+        sortCafes.sort(new AverageRatingComparator());
 
         return sortCafes;
     }

@@ -3,7 +3,7 @@ package model;
 
 import java.util.Comparator;
 
-public class SortByAverageRating implements Comparator<Cafe> {
+public class AverageRatingComparator implements Comparator<Cafe> {
 
     @Override
     public int compare(Cafe cafe1, Cafe cafe2) {
