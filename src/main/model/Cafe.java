@@ -14,7 +14,7 @@ public class Cafe {
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".0");
     private final String name;
     private final String location;
-    private Set<CafeTag> tags;
+    private Set<String> tags;
     private List<MenuItem> items;
 
     // REQUIRES: name and location have non-zero length
@@ -28,14 +28,14 @@ public class Cafe {
 
     // MODIFIES: this
     // EFFECTS: adds the given tag to the cafe's tags, doesn't allow duplicates
-    public void addTag(CafeTag tag) {
+    public void addTag(String tag) {
         tags.add(tag);
     }
 
     // REQUIRES: tag be in the cafe's tags
     // MODIFIES: this
     // EFFECTS: removes the given tag from the cafe's tags
-    public void removeTag(CafeTag tag) {
+    public void removeTag(String tag) {
         tags.remove(tag);
     }
 
@@ -50,19 +50,6 @@ public class Cafe {
     // EFFECTS: removes the given item from the list of items tried at the cafe
     public void removeItem(MenuItem item) {
         items.remove(item);
-    }
-
-    // EFFECTS: returns the menu items from this cafe that have been tagged with the given tag
-    public List<MenuItem> itemsByTag(MenuItem.ItemTag tag) {
-        List<MenuItem> result = new ArrayList<>();
-
-        for (MenuItem item : items) {
-            Set<MenuItem.ItemTag> tags = item.getTags();
-            if (tags.contains(tag)) {
-                result.add(item);
-            }
-        }
-        return result;
     }
 
     // EFFECTS: returns the average rating of every item rated at a cafe to one decimal place
@@ -95,21 +82,11 @@ public class Cafe {
         return location;
     }
 
-    public Set<CafeTag> getTags() {
+    public Set<String> getTags() {
         return tags;
     }
 
     public List<MenuItem> getItems() {
         return items;
-    }
-
-    public enum CafeTag {
-        STUDY_SPACE, WIFI, BATHROOM,
-        COZY, COMFORTABLE, LUXURY,
-        UNIQUE, CHAIN,
-        AFFORDABLE, EXPENSIVE,
-        SLEEPY, BUSY,
-        LOUD, QUIET,
-        INCLUSIVE, QUEER,
     }
 }

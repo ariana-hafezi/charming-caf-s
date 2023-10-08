@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.Cafe.CafeTag.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -78,35 +77,35 @@ public class CafeLogTest {
 
     @Test
     void testNoCafesWithTag() {
-        testCafeA.addTag(STUDY_SPACE);
-        testCafeA.addTag(SLEEPY);
-        testCafeB.addTag(AFFORDABLE);
+        testCafeA.addTag("study space");
+        testCafeA.addTag("sleepy");
+        testCafeB.addTag("affordable");
 
         testCafeLog.addCafe(testCafeA);
         testCafeLog.addCafe(testCafeB);
 
-        List<Cafe> result = testCafeLog.cafesByTag(EXPENSIVE);
+        List<Cafe> result = testCafeLog.cafesByTag("expensive");
         assertEquals(0, result.size());
     }
 
     @Test
     void testCafesWithTag() {
-        testCafeA.addTag(BUSY);
-        testCafeA.addTag(LOUD);
-        testCafeB.addTag(COMFORTABLE);
-        testCafeC.addTag(COMFORTABLE);
-        testCafeC.addTag(UNIQUE);
+        testCafeA.addTag("busy");
+        testCafeA.addTag("loud");
+        testCafeB.addTag("comfortable");
+        testCafeC.addTag("comfortable");
+        testCafeC.addTag("unique");
 
         testCafeLog.addCafe(testCafeA);
         testCafeLog.addCafe(testCafeB);
         testCafeLog.addCafe(testCafeC);
 
-        List<Cafe> result = testCafeLog.cafesByTag(COMFORTABLE);
+        List<Cafe> result = testCafeLog.cafesByTag("comfortable");
         assertEquals(2, result.size());
         assertTrue(result.contains(testCafeB));
         assertTrue(result.contains(testCafeC));
 
-        result = testCafeLog.cafesByTag(LOUD);
+        result = testCafeLog.cafesByTag("loud");
         assertEquals(1, result.size());
         assertTrue(result.contains(testCafeA));
     }

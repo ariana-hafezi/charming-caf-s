@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.Cafe.CafeTag.*;
-import static model.MenuItem.ItemTag.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,26 +32,26 @@ class CafeTest {
 
     @Test
     void testAddTag() {
-        testCafe.addTag(COZY);
+        testCafe.addTag("cozy");
         assertEquals(1, testCafe.getTags().size());
-        assertTrue(testCafe.getTags().contains(COZY));
+        assertTrue(testCafe.getTags().contains("cozy"));
 
-        testCafe.addTag(STUDY_SPACE);
+        testCafe.addTag("study space");
         assertEquals(2, testCafe.getTags().size());
-        assertTrue(testCafe.getTags().contains(COZY));
-        assertTrue(testCafe.getTags().contains(STUDY_SPACE));
+        assertTrue(testCafe.getTags().contains("cozy"));
+        assertTrue(testCafe.getTags().contains("study space"));
     }
 
     @Test
     void testRemoveTag() {
-        testCafe.addTag(QUEER);
-        testCafe.addTag(WIFI);
-        testCafe.removeTag(QUEER);
+        testCafe.addTag("inclusive");
+        testCafe.addTag("chain");
+        testCafe.removeTag("inclusive");
 
         assertEquals(1, testCafe.getTags().size());
-        assertTrue(testCafe.getTags().contains(WIFI));
+        assertTrue(testCafe.getTags().contains("chain"));
 
-        testCafe.removeTag(WIFI);
+        testCafe.removeTag("chain");
         assertEquals(0, testCafe.getTags().size());
     }
 
@@ -80,42 +78,6 @@ class CafeTest {
 
         testCafe.removeItem(testItemA);
         assertEquals(0, testCafe.getItems().size());
-    }
-
-    @Test
-    void testNoItemsWithTag() {
-        testItemA.addTag(ICED);
-        testItemA.addTag(BITTER);
-        testItemB.addTag(SWEET);
-
-        testCafe.addItem(testItemA);
-        testCafe.addItem(testItemB);
-
-        List<MenuItem> result = testCafe.itemsByTag(SAVOURY);
-        assertEquals(0, result.size());
-    }
-
-    @Test
-    void testItemsWithTag() {
-        testItemA.addTag(ICED);
-        testItemA.addTag(BITTER);
-        testItemB.addTag(SWEET);
-        testItemC.addTag(ICED);
-        testItemC.addTag(SWEET);
-
-        testCafe.addItem(testItemA);
-        testCafe.addItem(testItemB);
-        testCafe.addItem(testItemC);
-
-        List<MenuItem> result = testCafe.itemsByTag(SWEET);
-        assertEquals(2, result.size());
-        assertTrue(result.contains(testItemB));
-        assertTrue(result.contains(testItemC));
-
-        result = testCafe.itemsByTag(ICED);
-        assertEquals(2, result.size());
-        assertTrue(result.contains(testItemA));
-        assertTrue(result.contains(testItemC));
     }
 
     @Test

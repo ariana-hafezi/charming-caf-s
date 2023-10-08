@@ -28,11 +28,11 @@ public class CafeLog {
     }
 
     // EFFECTS: returns the menu items from this cafe that have been tagged with the given tag
-    public List<Cafe> cafesByTag(Cafe.CafeTag tag) {
+    public List<Cafe> cafesByTag(String tag) {
         List<Cafe> result = new ArrayList<>();
 
         for (Cafe cafe : cafes) {
-            Set<Cafe.CafeTag> tags = cafe.getTags();
+            Set<String> tags = cafe.getTags();
             if (tags.contains(tag)) {
                 result.add(cafe);
             }
@@ -54,7 +54,6 @@ public class CafeLog {
     // getters:
 
     public List<Cafe> getCafes() {
-
         return cafes;
     }
 
