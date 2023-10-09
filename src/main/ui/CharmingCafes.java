@@ -189,10 +189,11 @@ public class CharmingCafes {
         }
     }
 
-    //TODO
+    // REQUIRES: the user input be the back command or a cafe's name in the log
     // EFFECTS: displays the menu for the cafe log
     private void displayLogMenu() {
         System.out.println("\nto view a cafe, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
+        Cafe cafe = null;
         input.nextLine();
         String command = input.nextLine();
         if (command.equals(BACK_COMMAND)) {
@@ -201,11 +202,14 @@ public class CharmingCafes {
             for (Cafe c : cafeLog.getCafes()) {
                 String name = c.getName();
                 if (name.equals(command)) {
-                    displayCafe(c);
+                    cafe = c;
+                    displayCafe(cafe);
                     break;
                 }
             }
-            System.out.println("\nsorry, there is no cafe with that name!");
+            if (cafe == null) {
+                System.out.println("\nsorry, there is no cafe with that name!");
+            }
         }
     }
 
@@ -217,7 +221,7 @@ public class CharmingCafes {
         System.out.println("\tlocation → " + LOCATION_COMMAND);
         System.out.println("\titems menu → " + ITEMS_COMMAND);
         System.out.println("\ttags menu → " + TAGS_COMMAND);
-        System.out.println("\tgo back → " + BACK_COMMAND);
+        System.out.println("\tmain menu → " + MAIN_MENU_COMMAND);
 
         String command = input.next();
         processCafeCommand(cafe, command);
@@ -237,7 +241,7 @@ public class CharmingCafes {
             case TAGS_COMMAND:
                 displayTagsMenu(cafe);
                 break;
-            case BACK_COMMAND:
+            case MAIN_MENU_COMMAND:
                 break;
             default:
                 System.out.println(INVALID_COMMAND_STATEMENT);
@@ -327,7 +331,7 @@ public class CharmingCafes {
         Set<String> tags = cafe.getTags();
         if (tags.contains(tag)) {
             cafe.removeTag(tag);
-            System.out.println("\nthe tag '" + tag + "' was removed!");
+            System.out.println("\nthe tag '" + tag + "' was removed");
         } else {
             System.out.println("\nsorry, " + cafe.getName() + " doesn't have that tag!");
         }
@@ -429,24 +433,27 @@ public class CharmingCafes {
         }
     }
 
-    // TODO
     // MODIFIES: this
     // EFFECTS: displays the menu for editing an item at given cafe
     private void displayEditItemMenu(Cafe cafe) {
         System.out.println("\nto view an item, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
         input.nextLine();
         String command = input.nextLine();
+        MenuItem item = null;
         if (command.equals(BACK_COMMAND)) {
             processItemCommand(cafe, BACK_COMMAND);
         } else {
             for (MenuItem i : cafe.getItems()) {
                 String name = i.getName();
                 if (name.equals(command)) {
-                    displayItem(i, cafe);
+                    item = i;
+                    displayItem(item, cafe);
                     break;
                 }
             }
-            System.out.println("\nsorry, there is no item with that name at " + cafe.getName() + "!");
+            if (item == null) {
+                System.out.println("\nsorry, there is no item with that name at " + cafe.getName() + "!");
+            }
         }
     }
 
