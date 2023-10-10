@@ -13,7 +13,7 @@ import java.util.Set;
 // CharmingCafes is a cafe log application.
 public class CharmingCafes {
 
-    private static final String INVALID_COMMAND_STATEMENT = "\nsorry, please enter a valid command! (‘-’*)";
+    private static final String INVALID_COMMAND_STATEMENT = "\nsorry, please enter a valid command! ('-'*)";
 
     private static final String CAFE_COMMAND = "c";
     private static final String LOG_COMMAND = "l";
@@ -57,7 +57,7 @@ public class CharmingCafes {
                 processCommand(command);
             }
         }
-        System.out.println("\ngoodbye! (´ ᴗ｀✿)");
+        System.out.println("\ngoodbye!");
     }
 
     // MODIFIES: this
@@ -70,12 +70,12 @@ public class CharmingCafes {
     // EFFECTS: prints out the options for input commands
     private void displayMenu() {
         System.out.println("\nplease enter one of the following commands:");
-        System.out.println("\tview cafes → " + CAFE_COMMAND);
-        System.out.println("\tlog a cafe → " + LOG_COMMAND);
-        System.out.println("\tdelete a cafe → " + DELETE_COMMAND);
-        System.out.println("\trank cafes → " + RATING_COMMAND);
-        System.out.println("\tsearch cafes by tag → " + TAGS_COMMAND);
-        System.out.println("\tquit → " + QUIT_COMMAND);
+        System.out.println("\tview cafes -> " + CAFE_COMMAND);
+        System.out.println("\tlog a cafe -> " + LOG_COMMAND);
+        System.out.println("\tdelete a cafe -> " + DELETE_COMMAND);
+        System.out.println("\trank cafes -> " + RATING_COMMAND);
+        System.out.println("\tsearch cafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tquit -> " + QUIT_COMMAND);
     }
 
     // MODIFIES: this
@@ -115,7 +115,7 @@ public class CharmingCafes {
         String location = input.nextLine();
         Cafe cafe = new Cafe(name, location);
         cafeLog.addCafe(cafe);
-        System.out.println("\n" + cafe.getName() + " has been added to the log! yippee! ₍ᐢ•ﻌ•ᐢ₎*:・ﾟ");
+        System.out.println("\n" + cafe.getName() + " has been added to the log! yippee! (^-^*)");
     }
 
     // MODIFIES: this
@@ -150,7 +150,9 @@ public class CharmingCafes {
         } else {
             System.out.println("\nhere's the ranking:");
             for (Cafe cafe : cafes) {
-                System.out.print("\t" + rank + ". " + cafe.getName() + ": ⭐" + cafe.calculateAverageRating() + "⭐\n");
+                String name = cafe.getName();
+                double rating = cafe.calculateAverageRating();
+                System.out.print("\t" + rank + ". " + name + ": " + rating + " stars\n");
                 rank++;
             }
         }
@@ -169,7 +171,7 @@ public class CharmingCafes {
         } else {
             System.out.println("\nhere are the cafes with the tag: '" + tag + "'.");
             for (Cafe cafe : cafes) {
-                System.out.println("\t→ " + cafe.getName());
+                System.out.println("\t-> " + cafe.getName());
             }
         }
     }
@@ -183,7 +185,7 @@ public class CharmingCafes {
         } else {
             System.out.println("\nhere are the cafes:");
             for (Cafe cafe : cafes) {
-                System.out.println("\t→ " + cafe.getName());
+                System.out.println("\t-> " + cafe.getName());
             }
             displayLogMenu();
         }
@@ -218,10 +220,10 @@ public class CharmingCafes {
         String name = cafe.getName();
 
         System.out.println("\nplease enter one of the following commands for " + name + ":");
-        System.out.println("\tlocation → " + LOCATION_COMMAND);
-        System.out.println("\titems menu → " + ITEMS_COMMAND);
-        System.out.println("\ttags menu → " + TAGS_COMMAND);
-        System.out.println("\tmain menu → " + MAIN_MENU_COMMAND);
+        System.out.println("\tlocation -> " + LOCATION_COMMAND);
+        System.out.println("\titems menu -> " + ITEMS_COMMAND);
+        System.out.println("\ttags menu -> " + TAGS_COMMAND);
+        System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
         processCafeCommand(cafe, command);
@@ -253,11 +255,11 @@ public class CharmingCafes {
     // EFFECTS: displays tags menu for given cafe
     private void displayTagsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s tags, please enter one of the following commands:");
-        System.out.println("\tview tags → " + TAGS_COMMAND);
-        System.out.println("\tadd tag → " + ADD_COMMAND);
-        System.out.println("\tdelete tag → " + DELETE_COMMAND);
-        System.out.println("\tgo back → " + BACK_COMMAND);
-        System.out.println("\tmain menu → " + MAIN_MENU_COMMAND);
+        System.out.println("\tview tags -> " + TAGS_COMMAND);
+        System.out.println("\tadd tag -> " + ADD_COMMAND);
+        System.out.println("\tdelete tag -> " + DELETE_COMMAND);
+        System.out.println("\tgo back -> " + BACK_COMMAND);
+        System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
         processTagCommand(cafe, command);
@@ -300,7 +302,7 @@ public class CharmingCafes {
         } else {
             System.out.println("\nhere are the tags for " + cafeName + ":");
             for (String tag : tags) {
-                System.out.println("\t→ " + tag);
+                System.out.println("\t-> " + tag);
             }
         }
     }
@@ -318,7 +320,7 @@ public class CharmingCafes {
             System.out.println("\nsorry, the tag '" + tag + "' has already been added to " + cafeName + "!");
         } else {
             cafe.addTag(tag);
-            System.out.println("\nthe tag '" + tag + "' has been added to " + cafeName + "! yippee! ₍ᐢ•ﻌ•ᐢ₎*:・ﾟ");
+            System.out.println("\nthe tag '" + tag + "' has been added to " + cafeName + "! yippee! (^-^*)");
         }
     }
 
@@ -341,11 +343,11 @@ public class CharmingCafes {
     // EFFECTS: displays items menu for given cafe
     private void displayItemsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s items, please enter one of the following commands:");
-        System.out.println("\tview items → " + ITEMS_COMMAND);
-        System.out.println("\tadd item → " + ADD_COMMAND);
-        System.out.println("\tdelete item → " + DELETE_COMMAND);
-        System.out.println("\tgo back → " + BACK_COMMAND);
-        System.out.println("\tmain menu → " + MAIN_MENU_COMMAND);
+        System.out.println("\tview items -> " + ITEMS_COMMAND);
+        System.out.println("\tadd item -> " + ADD_COMMAND);
+        System.out.println("\tdelete item -> " + DELETE_COMMAND);
+        System.out.println("\tgo back -> " + BACK_COMMAND);
+        System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
         processItemCommand(cafe, command);
@@ -392,7 +394,7 @@ public class CharmingCafes {
         int price = input.nextInt();
         MenuItem item = new MenuItem(name, rating, price);
         cafe.addItem(item);
-        System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! ₍ᐢ•ﻌ•ᐢ₎*:・ﾟ");
+        System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! (^-^*)");
     }
 
     // MODIFIES: this
@@ -427,7 +429,7 @@ public class CharmingCafes {
         } else {
             System.out.println("\nhere are the items at " + cafeName + ":");
             for (MenuItem item : items) {
-                System.out.println("\t→ " + item.getName());
+                System.out.println("\t-> " + item.getName());
             }
             displayEditItemMenu(cafe);
         }
@@ -462,10 +464,10 @@ public class CharmingCafes {
     private void displayItem(MenuItem item, Cafe cafe) {
         String name = item.getName();
         System.out.println("\nplease enter one of the following commands for " + name + ":");
-        System.out.println("\titem information → " + ITEMS_COMMAND);
-        System.out.println("\tedit rating → " + RATING_COMMAND);
-        System.out.println("\tedit price → " + PRICE_COMMAND);
-        System.out.println("\tgo back → " + BACK_COMMAND);
+        System.out.println("\titem information -> " + ITEMS_COMMAND);
+        System.out.println("\tedit rating -> " + RATING_COMMAND);
+        System.out.println("\tedit price -> " + PRICE_COMMAND);
+        System.out.println("\tgo back -> " + BACK_COMMAND);
 
         String command = input.next();
         processSpecificItemCommand(item, command, cafe);
@@ -502,9 +504,9 @@ public class CharmingCafes {
         int rating  = item.getRating();
         int price = item.getPrice();
         if (price == 0) {
-            System.out.println("\n" + name + " is rated " + rating + " ⭐ and is free!");
+            System.out.println("\n" + name + " is rated " + rating + " stars and is free!");
         } else {
-            System.out.println("\n" + name + " is rated " + rating + " ⭐ and costs " + price + " cents");
+            System.out.println("\n" + name + " is rated " + rating + " stars and costs " + price + " cents");
         }
     }
 
