@@ -3,6 +3,7 @@ package model;
 
 import java.util.Comparator;
 
+// A comparator for the average rating of cafes.
 public class AverageRatingComparator implements Comparator<Cafe> {
 
     @Override

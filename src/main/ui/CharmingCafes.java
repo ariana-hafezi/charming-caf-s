@@ -215,7 +215,7 @@ public class CharmingCafes {
         }
     }
 
-    // EFFECTS: displays information and menu for given unique cafe name
+    // EFFECTS: displays information and menu for given cafe
     private void displayCafe(Cafe cafe) {
         String name = cafe.getName();
 
@@ -229,7 +229,7 @@ public class CharmingCafes {
         processCafeCommand(cafe, command);
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: processes user input for a cafe
     private void processCafeCommand(Cafe cafe, String command) {
         switch (command) {
@@ -251,7 +251,6 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
     // EFFECTS: displays tags menu for given cafe
     private void displayTagsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s tags, please enter one of the following commands:");
@@ -265,7 +264,7 @@ public class CharmingCafes {
         processTagCommand(cafe, command);
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: processes user input for a tag at given cafe
     private void processTagCommand(Cafe cafe, String command) {
         switch (command) {
@@ -307,7 +306,7 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: add tag to the cafe
     private void addTagToCafe(Cafe cafe) {
         System.out.println("\nplease enter the unique tag:");
@@ -324,7 +323,7 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: deletes the input tag from the given cafe's tags
     private void deleteTagFromCafe(Cafe cafe) {
         System.out.println("\nplease enter the tag you'd like to delete:");
@@ -339,7 +338,6 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
     // EFFECTS: displays items menu for given cafe
     private void displayItemsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s items, please enter one of the following commands:");
@@ -353,7 +351,7 @@ public class CharmingCafes {
         processItemCommand(cafe, command);
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: processes user input for an item at given cafe
     private void processItemCommand(Cafe cafe, String command) {
         switch (command) {
@@ -382,7 +380,7 @@ public class CharmingCafes {
 
     // REQUIRES: input rating be [1,5], input price >= 0, input name not belong to an item
     // previously logged at the cafe
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: add item to the cafe
     private void addItemToCafe(Cafe cafe) {
         System.out.println("\nplease enter the unique name of the item you wish to log:");
@@ -397,7 +395,7 @@ public class CharmingCafes {
         System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! (^-^*)");
     }
 
-    // MODIFIES: this
+    // MODIFIES: cafe
     // EFFECTS: deletes the item with the input name from the given cafe
     private void deleteItemFromCafe(Cafe cafe) {
         System.out.println("\nplease enter the name of the item you'd like to delete:");
@@ -435,7 +433,7 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
+    /// REQUIRES: the user input be the back command or a item's name at the given cafe
     // EFFECTS: displays the menu for editing an item at given cafe
     private void displayEditItemMenu(Cafe cafe) {
         System.out.println("\nto view an item, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
@@ -459,7 +457,6 @@ public class CharmingCafes {
         }
     }
 
-    // MODIFIES: this
     // EFFECTS: displays item's information and options for modifying it
     private void displayItem(MenuItem item, Cafe cafe) {
         String name = item.getName();
@@ -473,7 +470,7 @@ public class CharmingCafes {
         processSpecificItemCommand(item, command, cafe);
     }
 
-    // MODIFIES: this
+    // MODIFIES: item
     // EFFECTS: processes user input for the given item
     private void processSpecificItemCommand(MenuItem item, String command, Cafe cafe) {
         switch (command) {
@@ -510,8 +507,8 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: input rating be and integer in [1,5]
-    // MODIFIES: this
+    // REQUIRES: input rating be an integer in [1,5]
+    // MODIFIES: item
     // EFFECTS: changes the rating of the given item
     private void changeRating(MenuItem item) {
         String name = item.getName();
@@ -522,7 +519,7 @@ public class CharmingCafes {
     }
 
     // REQUIRES: input price be an integer >= 0
-    // MODIFIES: this
+    // MODIFIES: item
     // EFFECTS: changes the price of the given item
     private void changePrice(MenuItem item) {
         String name = item.getName();

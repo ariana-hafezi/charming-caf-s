@@ -1,9 +1,6 @@
 package model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-// Represents a menu item at a cafe with a name, rating, tags, and price in cents.
+// Represents a menu item at a cafe with a name, rating, and price in cents.
 public class MenuItem {
     private final String name;
     private int rating;
