@@ -7,7 +7,7 @@ import java.util.Set;
 
 // Represents a log of cafes the user has been to.
 public class CafeLog {
-    private List<Cafe> cafes;
+    private final List<Cafe> cafes;
 
     // EFFECTS: constructs a new cafe log with no cafes
     public CafeLog() {
@@ -42,8 +42,7 @@ public class CafeLog {
 
     // EFFECTS: returns a list of the cafes in the log in order of highest to lowest average item rating
     public List<Cafe> rankCafes() {
-        List<Cafe> sortCafes = new ArrayList<>();
-        sortCafes.addAll(cafes);
+        List<Cafe> sortCafes = new ArrayList<>(cafes);
 
         sortCafes.sort(new AverageRatingComparator());
 

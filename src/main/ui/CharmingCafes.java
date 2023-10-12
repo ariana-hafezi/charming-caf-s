@@ -57,7 +57,7 @@ public class CharmingCafes {
                 processCommand(command);
             }
         }
-        System.out.println("\ngoodbye!");
+        System.out.println("\ngoodbye! (^-^*)");
     }
 
     // MODIFIES: this
@@ -133,7 +133,7 @@ public class CharmingCafes {
             }
         }
         if (cafeToDelete == null) {
-            System.out.println("\nsorry, the cafe wasn't in the log!");
+            System.out.println("\nsorry, the cafe wasn't in the log! (;-;)");
         } else {
             cafeLog.removeCafe(cafeToDelete);
             System.out.println("\n" + name + " was deleted");
@@ -146,7 +146,7 @@ public class CharmingCafes {
         int rank = 1;
 
         if (cafes.isEmpty()) {
-            System.out.println("\nsorry, there are no cafes to rank!");
+            System.out.println("\nsorry, there are no cafes to rank! (;-;)");
         } else {
             System.out.println("\nhere's the ranking:");
             for (Cafe cafe : cafes) {
@@ -167,7 +167,7 @@ public class CharmingCafes {
         List<Cafe> cafes = cafeLog.cafesByTag(tag);
 
         if (cafes.isEmpty()) {
-            System.out.println("\nsorry, there are no cafes with the tag " + tag + "!");
+            System.out.println("\nsorry, there are no cafes with the tag " + tag + "! (;-;)");
         } else {
             System.out.println("\nhere are the cafes with the tag: '" + tag + "'.");
             for (Cafe cafe : cafes) {
@@ -181,7 +181,7 @@ public class CharmingCafes {
         List<Cafe> cafes = cafeLog.getCafes();
 
         if (cafes.isEmpty()) {
-            System.out.println("\nsorry, there are no cafes!");
+            System.out.println("\nsorry, there are no cafes! (;-;)");
         } else {
             System.out.println("\nhere are the cafes:");
             for (Cafe cafe : cafes) {
@@ -210,7 +210,7 @@ public class CharmingCafes {
                 }
             }
             if (cafe == null) {
-                System.out.println("\nsorry, there is no cafe with that name!");
+                System.out.println("\nsorry, there is no cafe with that name! (;-;)");
             }
         }
     }
@@ -297,7 +297,7 @@ public class CharmingCafes {
         String cafeName = cafe.getName();
 
         if (tags.isEmpty()) {
-            System.out.println("\nsorry, there are no tags for " + cafeName + "!");
+            System.out.println("\nsorry, there are no tags for " + cafeName + "! (;-;)");
         } else {
             System.out.println("\nhere are the tags for " + cafeName + ":");
             for (String tag : tags) {
@@ -316,7 +316,7 @@ public class CharmingCafes {
 
         Set<String> tags = cafe.getTags();
         if (tags.contains(tag)) {
-            System.out.println("\nsorry, the tag '" + tag + "' has already been added to " + cafeName + "!");
+            System.out.println("\nsorry, the tag '" + tag + "' has already been added to " + cafeName + "! (;-;)");
         } else {
             cafe.addTag(tag);
             System.out.println("\nthe tag '" + tag + "' has been added to " + cafeName + "! yippee! (^-^*)");
@@ -334,7 +334,7 @@ public class CharmingCafes {
             cafe.removeTag(tag);
             System.out.println("\nthe tag '" + tag + "' was removed");
         } else {
-            System.out.println("\nsorry, " + cafe.getName() + " doesn't have that tag!");
+            System.out.println("\nsorry, " + cafe.getName() + " doesn't have that tag! (;-;)");
         }
     }
 
@@ -410,7 +410,7 @@ public class CharmingCafes {
             }
         }
         if (itemToDelete == null) {
-            System.out.println("\nsorry, the item '" + name + "' wasn't in " + cafe.getName() + "'s items!");
+            System.out.println("\nsorry, the item '" + name + "' wasn't in " + cafe.getName() + "'s items! (;-;)");
         } else {
             cafe.removeItem(itemToDelete);
             System.out.println("\n" + name + " was deleted");
@@ -423,7 +423,7 @@ public class CharmingCafes {
         String cafeName = cafe.getName();
 
         if (items.isEmpty()) {
-            System.out.println("\nsorry, there are no items for " + cafeName + "!");
+            System.out.println("\nsorry, there are no items for " + cafeName + "! (;-;)");
         } else {
             System.out.println("\nhere are the items at " + cafeName + ":");
             for (MenuItem item : items) {
@@ -452,7 +452,7 @@ public class CharmingCafes {
                 }
             }
             if (item == null) {
-                System.out.println("\nsorry, there is no item with that name at " + cafe.getName() + "!");
+                System.out.println("\nsorry, there is no item with that name at " + cafe.getName() + "! (;-;)");
             }
         }
     }

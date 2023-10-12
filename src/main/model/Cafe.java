@@ -14,8 +14,8 @@ public class Cafe {
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".0");
     private final String name;
     private final String location;
-    private Set<String> tags;
-    private List<MenuItem> items;
+    private final Set<String> tags;
+    private final List<MenuItem> items;
 
     // REQUIRES: name and location have non-zero length
     // EFFECTS: constructs a cafe with the given name and location, no tags, and no items
