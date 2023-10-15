@@ -1,13 +1,20 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonTest;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Tests for the Cafe class.
-class CafeTest {
+class CafeTest extends JsonTest {
     private Cafe testCafe;
     private MenuItem testItemA;
     private MenuItem testItemB;
@@ -103,5 +110,23 @@ class CafeTest {
         testCafe.addItem(testItemB);
         testCafe.addItem(testItemC);
         assertEquals(4.3, testCafe.calculateAverageRating());
+    }
+
+    @Test
+    void testToJson() {
+        testCafe.addItem(testItemA);
+        testCafe.addTag("cozy");
+        JSONObject json = testCafe.toJson();
+
+        Set<String> tags = new HashSet<>();
+        tags.add("cozy");
+
+        List<MenuItem> items = new ArrayList<>();
+        items.add(testItemA);
+
+        assertEquals("Matchstick", json.get("name"));
+        assertEquals("Vancouver", json.get("location"));
+        assertEquals(tags.size(), json.getJSONArray("tags").length());
+        assertEquals(items.size(), json.getJSONArray("items").length());
     }
 }

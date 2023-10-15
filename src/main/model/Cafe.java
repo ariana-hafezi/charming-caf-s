@@ -90,7 +90,7 @@ public class Cafe implements Writable {
     private JSONArray tagsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (String tag :  tags) {
+        for (String tag : tags) {
             jsonArray.put(tag);
         }
 

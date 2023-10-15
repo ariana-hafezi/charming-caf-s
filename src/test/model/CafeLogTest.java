@@ -1,12 +1,12 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 // Tests for the CafeLog class.
 public class CafeLogTest {
@@ -170,5 +170,15 @@ public class CafeLogTest {
         assertEquals(testCafeD, result.get(1));
         assertEquals(testCafeA, result.get(2));
         assertEquals(testCafeC, result.get(3));
+    }
+
+    @Test
+    void testToJson() {
+        testCafeLog.addCafe(testCafeA);
+        testCafeLog.addCafe(testCafeB);
+        JSONObject json = testCafeLog.toJson();
+
+        List<Cafe> cafes = testCafeLog.getCafes();
+        assertEquals(cafes.size(), json.getJSONArray("cafes").length());
     }
 }

@@ -45,7 +45,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses cafe log from JSON object and returns it
-    private CafeLog parseCafeLog(JSONObject jsonObject) {
+    public CafeLog parseCafeLog(JSONObject jsonObject) {
         CafeLog cafeLog = new CafeLog();
         addCafes(cafeLog, jsonObject);
         return cafeLog;
