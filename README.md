@@ -26,7 +26,6 @@ a charming app where I could keep a detailed record of them.
 - As a user, I want to be able to view the list of items I've tried at a coffee shop.
 - As a user, I want to be able to rate items from a coffee shop.
 - As a user, I want to be able to rank the coffee shops by the average ratings of their items.
-- As a user, I want to be given the option to save changes to my cafe log when I select the quit option from the main 
-  menu.
-- As a user, I want to be given the option to load my cafe log when I start the application.
+- As a user, I want to be given the option to save changes to my cafe log.
+- As a user, I want to be given the option to load my cafe log.
 
