@@ -97,10 +97,8 @@ public class JsonReader {
     private void addTags(Cafe cafe, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("tags");
         Set<String> tags = new HashSet<>();
-        if (jsonArray != null) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                tags.add(jsonArray.getString(i));
-            }
+        for (int i = 0; i < jsonArray.length(); i++) {
+            tags.add(jsonArray.getString(i));
         }
         for (String tag : tags) {
             cafe.addTag(tag);
