@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,9 +12,8 @@ import java.util.Set;
 
 import static java.lang.Double.parseDouble;
 
-
 // Represents a cafe with a name, location, tags, and menu items a customer has tried.
-public class Cafe {
+public class Cafe implements Writable {
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".0");
     private final String name;
     private final String location;
@@ -70,6 +73,39 @@ public class Cafe {
         }
 
         return parseDouble(DECIMAL_FORMAT.format(average));
+    }
+
+    @Override
+    // EFFECTS: returns this cafe as a JSONObject
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("location", location);
+        json.put("tags", tagsToJson());
+        json.put("items", itemsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns the cafe's tags as a JSONArray
+    private JSONArray tagsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (String tag :  tags) {
+            jsonArray.put(tag);
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns the items for this cafe as a JSONArray
+    private JSONArray itemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (MenuItem item : items) {
+            jsonArray.put(item.toJson());
+        }
+
+        return jsonArray;
     }
 
     // getters:

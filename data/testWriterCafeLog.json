@@ -1,0 +1,25 @@
+{"cafes": [
+    {
+        "name": "matchstick",
+        "location": "Vancouver",
+        "items": [{
+            "price": 500,
+            "name": "iced latte",
+            "rating": 4
+        }],
+        "tags": [
+            "cozy",
+            "unique"
+        ]
+    },
+    {
+        "name": "butter baked goods",
+        "location": "Vancouver",
+        "items": [{
+            "price": 450,
+            "name": "raspberry chocolate cupcake",
+            "rating": 4
+        }],
+        "tags": ["quiet"]
+    }
+]}

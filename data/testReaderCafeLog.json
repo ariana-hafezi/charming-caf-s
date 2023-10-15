@@ -1,0 +1,33 @@
+{
+    "cafes": [
+      {
+        "name": "matchstick",
+        "location": "Vancouver",
+        "tags": ["cozy", "unique"],
+        "items": [
+          {
+            "name": "iced latte",
+            "rating": 4,
+            "price": 500
+          }
+        ]
+      },
+      {
+        "name": "smoking gun coffee",
+        "location": "Chilliwack",
+        "tags": ["quiet"],
+        "items": [
+          {
+            "name": "iced mocha",
+            "rating": 5,
+            "price": 650
+          },
+          {
+            "name": "spiced oat latte",
+            "rating": 4,
+            "price": 450
+          }
+        ]
+      }
+    ]
+}

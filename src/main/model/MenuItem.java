@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a menu item at a cafe with a name, rating, and price in cents.
-public class MenuItem {
+public class MenuItem implements Writable {
     private final String name;
     private int rating;
     private int price;
@@ -26,6 +29,16 @@ public class MenuItem {
     // EFFECTS: sets the price of the item to the given price in cents
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    // EFFECTS: returns this item as a JSONObject
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("rating", rating);
+        json.put("price", price);
+        return json;
     }
 
     // getters:

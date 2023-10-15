@@ -3,13 +3,18 @@ package ui;
 import model.Cafe;
 import model.CafeLog;
 import model.MenuItem;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 
 // Note: displayMenu() and processCommand() modeled after the TellerApp example.
+// loadCafeLog() and saveCafeLog() modelled after loadWorkRoom() and saveWorkRoom() in JsonSerializationDemo.
 // CharmingCafes is a cafe log application.
 public class CharmingCafes {
 
@@ -19,6 +24,7 @@ public class CharmingCafes {
     private static final String LOG_COMMAND = "l";
     private static final String DELETE_COMMAND = "d";
     private static final String RATING_COMMAND = "r";
+    private static final String SAVE_COMMAND = "s";
     private static final String QUIT_COMMAND = "q";
 
     private static final String LOCATION_COMMAND = "l";
@@ -29,12 +35,14 @@ public class CharmingCafes {
     private static final String PRICE_COMMAND = "p";
     private static final String MAIN_MENU_COMMAND = "m";
 
-
+    private static final String FILE = "./data/cafeLog.json";
     private CafeLog cafeLog;
     private Scanner input;
+    private JsonWriter writer;
+    private JsonReader reader;
 
     // Runs the charming cafes application.
-    public CharmingCafes() {
+    public CharmingCafes() throws FileNotFoundException {
         runCharmingCafes();
     }
 
@@ -65,6 +73,8 @@ public class CharmingCafes {
     private void initialize() {
         cafeLog = new CafeLog();
         input = new Scanner(System.in);
+        writer = new JsonWriter(FILE);
+        reader = new JsonReader(FILE);
     }
 
     // EFFECTS: prints out the options for input commands
@@ -75,6 +85,7 @@ public class CharmingCafes {
         System.out.println("\tdelete a cafe -> " + DELETE_COMMAND);
         System.out.println("\trank cafes -> " + RATING_COMMAND);
         System.out.println("\tsearch cafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tsave and load menu -> " + SAVE_COMMAND);
         System.out.println("\tquit -> " + QUIT_COMMAND);
     }
 
@@ -96,6 +107,9 @@ public class CharmingCafes {
                 break;
             case TAGS_COMMAND:
                 displayCafesWithTag();
+                break;
+            case SAVE_COMMAND:
+                displaySaveMenu();
                 break;
             case BACK_COMMAND:
                 break;
@@ -176,6 +190,37 @@ public class CharmingCafes {
         }
     }
 
+
+    // EFFECTS: displays the menu for saving or loading a cafe log
+    private void displaySaveMenu() {
+        System.out.println("\nplease enter one of the following commands:");
+        System.out.println("\tload cafe log -> " + LOG_COMMAND);
+        System.out.println("\tsave -> " + SAVE_COMMAND);
+        System.out.println("\tback -> " + BACK_COMMAND);
+
+        String command = input.next();
+        command = command.toLowerCase();
+        processSaveCommand(command);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes save or load command
+    private void processSaveCommand(String command) {
+        switch (command) {
+            case LOG_COMMAND:
+                loadCafeLog();
+                break;
+            case SAVE_COMMAND:
+                saveCafeLog();
+                break;
+            case BACK_COMMAND:
+                break;
+            default:
+                System.out.println(INVALID_COMMAND_STATEMENT);
+                break;
+        }
+    }
+
     // EFFECTS: prints out the cafes in the log
     private void printLog() {
         List<Cafe> cafes = cafeLog.getCafes();
@@ -226,6 +271,7 @@ public class CharmingCafes {
         System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
+        command = command.toLowerCase();
         processCafeCommand(cafe, command);
     }
 
@@ -261,6 +307,7 @@ public class CharmingCafes {
         System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
+        command = command.toLowerCase();
         processTagCommand(cafe, command);
     }
 
@@ -348,6 +395,7 @@ public class CharmingCafes {
         System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
+        command = command.toLowerCase();
         processItemCommand(cafe, command);
     }
 
@@ -467,6 +515,7 @@ public class CharmingCafes {
         System.out.println("\tgo back -> " + BACK_COMMAND);
 
         String command = input.next();
+        command = command.toLowerCase();
         processSpecificItemCommand(item, command, cafe);
     }
 
@@ -498,7 +547,7 @@ public class CharmingCafes {
     // EFFECTS: prints the name, rating, and price of the given item
     private void printItemInformation(MenuItem item) {
         String name = item.getName();
-        int rating  = item.getRating();
+        int rating = item.getRating();
         int price = item.getPrice();
         if (price == 0) {
             System.out.println("\n" + name + " is rated " + rating + " stars and is free!");
@@ -527,5 +576,28 @@ public class CharmingCafes {
         int price = input.nextInt();
         item.setPrice(price);
         System.out.println("\n" + name + "'s price has been changed!");
+    }
+
+    // EFFECTS: saves the cafe log to file
+    private void saveCafeLog() {
+        try {
+            writer.open();
+            writer.write(cafeLog);
+            writer.close();
+            System.out.println("saved the cafe log to " + FILE + " yippee! (^-^*)");
+        } catch (FileNotFoundException e) {
+            System.out.println("sorry, unable to write to the file: " + FILE + " (;-;)");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads cafe log from file
+    private void loadCafeLog() {
+        try {
+            cafeLog = reader.read();
+            System.out.println("loaded cafe log from " + FILE + " yippee! (^-^*)");
+        } catch (IOException e) {
+            System.out.println("sorry, unable to read from the file: " + FILE + " (;-;)");
+        }
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Tests for the CafeLog class.
 public class CafeLogTest {
     private CafeLog testCafeLog;
     private Cafe testCafeA;
