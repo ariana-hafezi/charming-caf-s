@@ -91,6 +91,7 @@ public class CharmingCafes {
 
     // MODIFIES: this
     // EFFECTS: processes the input command
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void processCommand(String command) {
         switch (command) {
             case CAFE_COMMAND:
