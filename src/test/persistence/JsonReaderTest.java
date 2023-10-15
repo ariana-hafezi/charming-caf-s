@@ -59,7 +59,6 @@ public class JsonReaderTest extends JsonTest {
             checkCafe("matchstick", "Vancouver", tags, items, cafes.get(0));
 
             tags.clear();
-            tags.add("quiet");
             items.clear();
             item1 = new MenuItem("iced mocha", 5, 650);
             MenuItem item2 = new MenuItem("spiced oat latte", 4, 450);
