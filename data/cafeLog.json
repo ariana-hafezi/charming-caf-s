@@ -1,1 +1,25 @@
-{"cafes": []}
+{"cafes": [
+    {
+        "name": "matchstick",
+        "location": "vancouver",
+        "items": [{
+            "price": 550,
+            "name": "iced latte",
+            "rating": 4
+        }],
+        "tags": ["unique"]
+    },
+    {
+        "name": "smoking gun coffee",
+        "location": "chilliwack",
+        "items": [{
+            "price": 500,
+            "name": "spiced oat latte",
+            "rating": 5
+        }],
+        "tags": [
+            "inclusive",
+            "cozy"
+        ]
+    }
+]}

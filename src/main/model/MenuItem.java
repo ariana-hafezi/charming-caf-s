@@ -44,14 +44,14 @@ public class MenuItem implements Writable {
     // getters:
 
     public String getName() {
-        return name; //stub
+        return name;
     }
 
     public int getRating() {
-        return rating; //stub
+        return rating;
     }
 
     public int getPrice() {
-        return price; //stub
+        return price;
     }
 }
