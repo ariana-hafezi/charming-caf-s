@@ -482,7 +482,7 @@ public class CharmingCafes {
         }
     }
 
-    /// REQUIRES: the user input be the back command or a item's name at the given cafe
+    // REQUIRES: the user input be the back command or an item's name at the given cafe
     // EFFECTS: displays the menu for editing an item at given cafe
     private void displayEditItemMenu(Cafe cafe) {
         System.out.println("\nto view an item, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
