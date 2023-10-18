@@ -20,7 +20,7 @@ public class JsonTest {
         cafeLog = new CafeLog();
     }
 
-    protected void checkCafe(String name, String location, Set<String> tags, List<MenuItem> items, Cafe cafe) {
+    public void checkCafe(String name, String location, Set<String> tags, List<MenuItem> items, Cafe cafe) {
         assertEquals(name, cafe.getName());
         assertEquals(location, cafe.getLocation());
         assertEquals(tags, cafe.getTags());

@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import persistence.JsonReader;
+import persistence.JsonTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // Tests for the CafeLog class.
-public class CafeLogTest {
+public class CafeLogTest extends JsonTest {
     private CafeLog testCafeLog;
     private Cafe testCafeA;
     private Cafe testCafeB;
@@ -174,11 +176,22 @@ public class CafeLogTest {
 
     @Test
     void testToJson() {
+        testCafeA.addTag("cozy");
         testCafeLog.addCafe(testCafeA);
         testCafeLog.addCafe(testCafeB);
+
         JSONObject json = testCafeLog.toJson();
 
-        List<Cafe> cafes = testCafeLog.getCafes();
-        assertEquals(cafes.size(), json.getJSONArray("cafes").length());
+        JsonReader reader = new JsonReader("testCafeLog");
+        CafeLog cafeLog = reader.parseCafeLog(json);
+        List<Cafe> readCafes = cafeLog.getCafes();
+
+        Cafe readCafe = readCafes.get(0);
+        checkCafe(testCafeA.getName(), testCafeA.getLocation(), testCafeA.getTags(), testCafeA.getItems(), readCafe);
+
+        readCafe = readCafes.get(1);
+        checkCafe(testCafeB.getName(), testCafeB.getLocation(), testCafeB.getTags(), testCafeB.getItems(), readCafe);
+
+        assertEquals(2, readCafes.size());
     }
 }

@@ -1,6 +1,5 @@
 package model;
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,13 +34,5 @@ public class MenuItemTest {
     void testSetPrice() {
         testItem.setPrice(799);
         assertEquals(799, testItem.getPrice());
-    }
-
-    @Test
-    void testToJson() {
-        JSONObject json = testItem.toJson();
-        assertEquals("iced latte", json.get("name"));
-        assertEquals(5, json.get("rating"));
-        assertEquals(600, json.get("price"));
     }
 }

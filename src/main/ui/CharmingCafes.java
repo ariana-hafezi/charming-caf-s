@@ -23,6 +23,7 @@ public class CharmingCafes {
     private static final String CAFE_COMMAND = "c";
     private static final String LOG_COMMAND = "l";
     private static final String DELETE_COMMAND = "d";
+    private static final String FILTER_COMMAND = "f";
     private static final String RATING_COMMAND = "r";
     private static final String SAVE_COMMAND = "s";
     private static final String QUIT_COMMAND = "q";
@@ -83,15 +84,13 @@ public class CharmingCafes {
         System.out.println("\tview cafes -> " + CAFE_COMMAND);
         System.out.println("\tlog a cafe -> " + LOG_COMMAND);
         System.out.println("\tdelete a cafe -> " + DELETE_COMMAND);
-        System.out.println("\trank cafes -> " + RATING_COMMAND);
-        System.out.println("\tsearch cafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tfilter cafes menu -> " + FILTER_COMMAND);
         System.out.println("\tsave and load menu -> " + SAVE_COMMAND);
         System.out.println("\tquit -> " + QUIT_COMMAND);
     }
 
     // MODIFIES: this
     // EFFECTS: processes the input command
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void processCommand(String command) {
         switch (command) {
             case CAFE_COMMAND:
@@ -100,14 +99,11 @@ public class CharmingCafes {
             case LOG_COMMAND:
                 logCafe();
                 break;
+            case FILTER_COMMAND:
+                displayFilterMenu();
+                break;
             case DELETE_COMMAND:
                 deleteCafe();
-                break;
-            case RATING_COMMAND:
-                rankCafes();
-                break;
-            case TAGS_COMMAND:
-                displayCafesWithTag();
                 break;
             case SAVE_COMMAND:
                 displaySaveMenu();
@@ -154,6 +150,38 @@ public class CharmingCafes {
             System.out.println("\n" + name + " was deleted");
         }
     }
+
+    // EFFECTS: displays the menu to filter cafes in the log
+    private void displayFilterMenu() {
+        System.out.println("\nplease enter one of the following commands:");
+        System.out.println("\trank cafes -> " + RATING_COMMAND);
+        System.out.println("\tsearch cafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tback -> " + BACK_COMMAND);
+
+        String command = input.next();
+        command = command.toLowerCase();
+        processFilterCommand(command);
+    }
+
+    // processes commands to filter and display cafes
+    private void processFilterCommand(String command) {
+        switch (command) {
+            case RATING_COMMAND:
+                rankCafes();
+                displayFilterMenu();
+                break;
+            case TAGS_COMMAND:
+                displayCafesWithTag();
+                displayFilterMenu();
+                break;
+            case BACK_COMMAND:
+                break;
+            default:
+                System.out.println(INVALID_COMMAND_STATEMENT);
+                displayFilterMenu();
+        }
+    }
+
 
     // EFFECTS: print out the ranked list of cafes in the log
     private void rankCafes() {
@@ -210,15 +238,17 @@ public class CharmingCafes {
         switch (command) {
             case LOG_COMMAND:
                 loadCafeLog();
+                displaySaveMenu();
                 break;
             case SAVE_COMMAND:
                 saveCafeLog();
+                displaySaveMenu();
                 break;
             case BACK_COMMAND:
                 break;
             default:
                 System.out.println(INVALID_COMMAND_STATEMENT);
-                break;
+                displaySaveMenu();
         }
     }
 
