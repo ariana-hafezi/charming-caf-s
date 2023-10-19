@@ -79,7 +79,7 @@ public class CafeLogTest extends JsonTest {
     }
 
     @Test
-    void testNoCafesWithTag() {
+    void testCafesByTagNoCafesWithTag() {
         testCafeA.addTag("study space");
         testCafeA.addTag("sleepy");
         testCafeB.addTag("affordable");
@@ -92,7 +92,7 @@ public class CafeLogTest extends JsonTest {
     }
 
     @Test
-    void testCafesWithTag() {
+    void testCafesByTag() {
         testCafeA.addTag("busy");
         testCafeA.addTag("loud");
         testCafeB.addTag("comfortable");
@@ -111,6 +111,32 @@ public class CafeLogTest extends JsonTest {
         result = testCafeLog.cafesByTag("loud");
         assertEquals(1, result.size());
         assertTrue(result.contains(testCafeA));
+    }
+
+    @Test
+    void testCafesByLocationNoCafesWithLocation() {
+        testCafeLog.addCafe(testCafeA);
+        testCafeLog.addCafe(testCafeB);
+        testCafeLog.addCafe(testCafeC);
+
+        List<Cafe> result = testCafeLog.cafesByLocation("London");
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testCafesByLocation() {
+        testCafeLog.addCafe(testCafeA);
+        testCafeLog.addCafe(testCafeB);
+        testCafeLog.addCafe(testCafeC);
+
+        List<Cafe> result = testCafeLog.cafesByLocation("Vancouver");
+        assertEquals(2, result.size());
+        assertEquals(testCafeA, result.get(0));
+        assertEquals(testCafeC, result.get(1));
+
+        result = testCafeLog.cafesByLocation("chilliwack");
+        assertEquals(1, result.size());
+        assertEquals(testCafeB, result.get(0));
     }
 
     @Test

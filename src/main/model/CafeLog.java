@@ -31,13 +31,28 @@ public class CafeLog implements Writable {
         cafes.remove(cafe);
     }
 
-    // EFFECTS: returns the menu items from this cafe that have been tagged with the given tag
+    // EFFECTS: returns the cafes in the log that have been tagged with the given tag
     public List<Cafe> cafesByTag(String tag) {
         List<Cafe> result = new ArrayList<>();
 
         for (Cafe cafe : cafes) {
             Set<String> tags = cafe.getTags();
             if (tags.contains(tag)) {
+                result.add(cafe);
+            }
+        }
+        return result;
+    }
+
+    // EFFECTS: returns the cafes in the log that have the given location
+    public List<Cafe> cafesByLocation(String location) {
+        List<Cafe> result = new ArrayList<>();
+        location = location.toLowerCase();
+
+        for (Cafe cafe : cafes) {
+            String cafeLocation = cafe.getLocation();
+            cafeLocation = cafeLocation.toLowerCase();
+            if (location.equals(cafeLocation)) {
                 result.add(cafe);
             }
         }

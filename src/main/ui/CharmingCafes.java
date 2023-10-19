@@ -20,17 +20,17 @@ public class CharmingCafes {
 
     private static final String INVALID_COMMAND_STATEMENT = "\nsorry, please enter a valid command! ('-'*)";
 
-    private static final String CAFE_COMMAND = "c";
-    private static final String LOG_COMMAND = "l";
+    private static final String VIEW_COMMAND = "v";
+    private static final String ADD_COMMAND = "a";
     private static final String DELETE_COMMAND = "d";
     private static final String FILTER_COMMAND = "f";
     private static final String RATING_COMMAND = "r";
     private static final String SAVE_COMMAND = "s";
+    private static final String LOAD_COMMAND = "l";
     private static final String QUIT_COMMAND = "q";
 
     private static final String LOCATION_COMMAND = "l";
     private static final String ITEMS_COMMAND = "i";
-    private static final String ADD_COMMAND = "a";
     private static final String TAGS_COMMAND = "t";
     private static final String BACK_COMMAND = "b";
     private static final String PRICE_COMMAND = "p";
@@ -81,8 +81,8 @@ public class CharmingCafes {
     // EFFECTS: prints out the options for input commands
     private void displayMenu() {
         System.out.println("\nplease enter one of the following commands:");
-        System.out.println("\tview cafes -> " + CAFE_COMMAND);
-        System.out.println("\tlog a cafe -> " + LOG_COMMAND);
+        System.out.println("\tview cafes -> " + VIEW_COMMAND);
+        System.out.println("\tadd a cafe -> " + ADD_COMMAND);
         System.out.println("\tdelete a cafe -> " + DELETE_COMMAND);
         System.out.println("\tfilter cafes menu -> " + FILTER_COMMAND);
         System.out.println("\tsave and load menu -> " + SAVE_COMMAND);
@@ -93,10 +93,10 @@ public class CharmingCafes {
     // EFFECTS: processes the input command
     private void processCommand(String command) {
         switch (command) {
-            case CAFE_COMMAND:
+            case VIEW_COMMAND:
                 printLog();
                 break;
-            case LOG_COMMAND:
+            case ADD_COMMAND:
                 logCafe();
                 break;
             case FILTER_COMMAND:
@@ -155,7 +155,8 @@ public class CharmingCafes {
     private void displayFilterMenu() {
         System.out.println("\nplease enter one of the following commands:");
         System.out.println("\trank cafes -> " + RATING_COMMAND);
-        System.out.println("\tsearch cafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tcafes by tag -> " + TAGS_COMMAND);
+        System.out.println("\tcafes by location -> " + LOCATION_COMMAND);
         System.out.println("\tback -> " + BACK_COMMAND);
 
         String command = input.next();
@@ -174,6 +175,10 @@ public class CharmingCafes {
                 displayCafesWithTag();
                 displayFilterMenu();
                 break;
+            case LOCATION_COMMAND:
+                displayCafesInLocation();
+                displayFilterMenu();
+                break;
             case BACK_COMMAND:
                 break;
             default:
@@ -181,7 +186,6 @@ public class CharmingCafes {
                 displayFilterMenu();
         }
     }
-
 
     // EFFECTS: print out the ranked list of cafes in the log
     private void rankCafes() {
@@ -219,11 +223,27 @@ public class CharmingCafes {
         }
     }
 
+    private void displayCafesInLocation() {
+        System.out.println("\nplease enter the location you'd like to search for:");
+        input.nextLine();
+        String location = input.nextLine();
+
+        List<Cafe> cafes = cafeLog.cafesByLocation(location);
+
+        if (cafes.isEmpty()) {
+            System.out.println("\nsorry, there are no cafes in " + location + "! (;-;)");
+        } else {
+            System.out.println("\nhere are the cafes in " + location + ".");
+            for (Cafe cafe : cafes) {
+                System.out.println("\t-> " + cafe.getName());
+            }
+        }
+    }
 
     // EFFECTS: displays the menu for saving or loading a cafe log
     private void displaySaveMenu() {
         System.out.println("\nplease enter one of the following commands:");
-        System.out.println("\tload cafe log -> " + LOG_COMMAND);
+        System.out.println("\tload cafe log -> " + LOAD_COMMAND);
         System.out.println("\tsave -> " + SAVE_COMMAND);
         System.out.println("\tback -> " + BACK_COMMAND);
 
@@ -236,7 +256,7 @@ public class CharmingCafes {
     // EFFECTS: processes save or load command
     private void processSaveCommand(String command) {
         switch (command) {
-            case LOG_COMMAND:
+            case LOAD_COMMAND:
                 loadCafeLog();
                 displaySaveMenu();
                 break;
@@ -331,7 +351,7 @@ public class CharmingCafes {
     // EFFECTS: displays tags menu for given cafe
     private void displayTagsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s tags, please enter one of the following commands:");
-        System.out.println("\tview tags -> " + TAGS_COMMAND);
+        System.out.println("\tview tags -> " + VIEW_COMMAND);
         System.out.println("\tadd tag -> " + ADD_COMMAND);
         System.out.println("\tdelete tag -> " + DELETE_COMMAND);
         System.out.println("\tgo back -> " + BACK_COMMAND);
@@ -346,7 +366,7 @@ public class CharmingCafes {
     // EFFECTS: processes user input for a tag at given cafe
     private void processTagCommand(Cafe cafe, String command) {
         switch (command) {
-            case TAGS_COMMAND:
+            case VIEW_COMMAND:
                 printTags(cafe);
                 displayTagsMenu(cafe);
                 break;
@@ -419,7 +439,7 @@ public class CharmingCafes {
     // EFFECTS: displays items menu for given cafe
     private void displayItemsMenu(Cafe cafe) {
         System.out.println("\nfor " + cafe.getName() + "'s items, please enter one of the following commands:");
-        System.out.println("\tview items -> " + ITEMS_COMMAND);
+        System.out.println("\tview items -> " + VIEW_COMMAND);
         System.out.println("\tadd item -> " + ADD_COMMAND);
         System.out.println("\tdelete item -> " + DELETE_COMMAND);
         System.out.println("\tgo back -> " + BACK_COMMAND);
@@ -434,7 +454,7 @@ public class CharmingCafes {
     // EFFECTS: processes user input for an item at given cafe
     private void processItemCommand(Cafe cafe, String command) {
         switch (command) {
-            case ITEMS_COMMAND:
+            case VIEW_COMMAND:
                 printItems(cafe);
                 displayItemsMenu(cafe);
                 break;
