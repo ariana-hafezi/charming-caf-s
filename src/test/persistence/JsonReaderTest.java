@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Note: modelled after JsonSerializationDemo's JsonReaderTest class.
+// Note: Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Tests for the JSONReader class.
 public class JsonReaderTest extends JsonTest {
 

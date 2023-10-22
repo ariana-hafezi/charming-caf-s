@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Paths.get;
 
-// Note: modelled after JsonSerializationDemo's JsonReader class.
+// Note: Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a reader that reads cafe log from JSON data stored in file.
 public class JsonReader {
     private String source;

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-// Note: toJson() and cafesToJson() modelled after JsonSerialization Demo's toJson() and thingiesToJson().
 // Represents a log of cafes the user has been to.
 public class CafeLog implements Writable {
     private final List<Cafe> cafes;

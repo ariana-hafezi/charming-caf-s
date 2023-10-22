@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// Note: modelled after JsonSerializationDemo's JsonWriter class.
+// Note: Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a writer that writes JSON representation of cafe log to file.
 public class JsonWriter {
     private static final int TAB = 4;

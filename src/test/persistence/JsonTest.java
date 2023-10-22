@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// Note: modelled after JsonSerializationDemo's JsonTest class.
+// Note: Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Methods for testing JSON classes.
 public class JsonTest {
     protected CafeLog cafeLog;

@@ -13,8 +13,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-// Note: displayMenu() and processCommand() modeled after the TellerApp example.
-// loadCafeLog() and saveCafeLog() modelled after loadWorkRoom() and saveWorkRoom() in JsonSerializationDemo.
+// Note: Code influenced by TellerApp example: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
+// Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // CharmingCafes is a cafe log application.
 public class CharmingCafes {
 

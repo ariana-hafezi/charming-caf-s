@@ -2,7 +2,7 @@ package persistence;
 
 import org.json.JSONObject;
 
-// Note: modelled after JsonSerializationDemo's Writable interface.
+// Note: Code influenced by JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents an object that can be written as a JSON object.
 public interface Writable {
 
