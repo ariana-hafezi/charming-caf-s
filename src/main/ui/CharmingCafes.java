@@ -360,7 +360,7 @@ public class CharmingCafes {
         System.out.println("\tview tags -> " + VIEW_COMMAND);
         System.out.println("\tadd tag -> " + ADD_COMMAND);
         System.out.println("\tdelete tag -> " + DELETE_COMMAND);
-        System.out.println("\tgo back -> " + BACK_COMMAND);
+        System.out.println("\tback -> " + BACK_COMMAND);
         System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
@@ -448,7 +448,7 @@ public class CharmingCafes {
         System.out.println("\tview items -> " + VIEW_COMMAND);
         System.out.println("\tadd item -> " + ADD_COMMAND);
         System.out.println("\tdelete item -> " + DELETE_COMMAND);
-        System.out.println("\tgo back -> " + BACK_COMMAND);
+        System.out.println("\tback -> " + BACK_COMMAND);
         System.out.println("\tmain menu -> " + MAIN_MENU_COMMAND);
 
         String command = input.next();
@@ -556,7 +556,7 @@ public class CharmingCafes {
         String command = input.nextLine();
         MenuItem item = null;
         if (command.equals(BACK_COMMAND)) {
-            processItemCommand(cafe, BACK_COMMAND);
+            processItemCommand(cafe, MAIN_MENU_COMMAND);
         } else {
             for (MenuItem i : cafe.getItems()) {
                 String name = i.getName();
@@ -579,7 +579,7 @@ public class CharmingCafes {
         System.out.println("\titem information -> " + ITEMS_COMMAND);
         System.out.println("\tedit rating -> " + RATING_COMMAND);
         System.out.println("\tedit price -> " + PRICE_COMMAND);
-        System.out.println("\tgo back -> " + BACK_COMMAND);
+        System.out.println("\tback -> " + BACK_COMMAND);
 
         String command = input.next();
         command = command.toLowerCase();
@@ -603,7 +603,6 @@ public class CharmingCafes {
                 displayItem(item, cafe);
                 break;
             case BACK_COMMAND:
-                displayItemsMenu(cafe);
                 break;
             default:
                 System.out.println(INVALID_COMMAND_STATEMENT);
