@@ -94,6 +94,7 @@ public class MenuItemTest {
     void testEquals() {
         assertFalse(testItem.equals("iced latte"));
         assertEquals(testItem, testItemSameName);
+        assertFalse(testItem.equals(null));
     }
 
     @Test

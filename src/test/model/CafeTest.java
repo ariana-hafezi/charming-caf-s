@@ -135,6 +135,7 @@ class CafeTest extends JsonTest {
     void testEquals() {
         assertFalse(testCafe.equals("Matchstick"));
         assertTrue(testCafe.equals(testCafeSameName));
+        assertFalse(testCafe.equals(null));
     }
 
     @Test
