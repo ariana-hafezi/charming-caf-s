@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.PriceException;
+import exceptions.RatingException;
 import model.Cafe;
 import model.CafeLog;
 import model.MenuItem;
@@ -115,7 +117,6 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: the cafe have a unique name (not already in the log)
     // MODIFIES: this
     // EFFECTS: adds a cafe to the log
     private void logCafe() {
@@ -125,8 +126,13 @@ public class CharmingCafes {
         System.out.println("\nplease enter the cafe's location:");
         String location = input.nextLine();
         Cafe cafe = new Cafe(name, location);
-        cafeLog.addCafe(cafe);
-        System.out.println("\n" + cafe.getName() + " has been added to the log! yippee! (^-^*)");
+        List<Cafe> cafes = cafeLog.getCafes();
+        if (cafes.contains(cafe)) {
+            System.out.println("\nsorry,v " + cafe.getName() + " was already in the log! (;-;)");
+        } else {
+            cafeLog.addCafe(cafe);
+            System.out.println("\n" + cafe.getName() + " has been added to the log! yippee! (^-^*)");
+        }
     }
 
     // MODIFIES: this
@@ -223,6 +229,7 @@ public class CharmingCafes {
         }
     }
 
+    // EFFECTS: displays the cafes in the given location
     private void displayCafesInLocation() {
         System.out.println("\nplease enter the location you'd like to search for:");
         input.nextLine();
@@ -287,7 +294,6 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: the user input be the back command or a cafe's name in the log
     // EFFECTS: displays the menu for the cafe log
     private void displayLogMenu() {
         System.out.println("\nto view a cafe, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
@@ -477,8 +483,7 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: input rating be [1,5], input price >= 0, input name not belong to an item
-    // previously logged at the cafe
+    // REQUIRES: user input for rating and price be integers
     // MODIFIES: cafe
     // EFFECTS: add item to the cafe
     private void addItemToCafe(Cafe cafe) {
@@ -489,9 +494,21 @@ public class CharmingCafes {
         int rating = input.nextInt();
         System.out.println("\nplease enter the price in cents:");
         int price = input.nextInt();
-        MenuItem item = new MenuItem(name, rating, price);
-        cafe.addItem(item);
-        System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! (^-^*)");
+        MenuItem item;
+        try {
+            item = new MenuItem(name, rating, price);
+            List<MenuItem> items = cafe.getItems();
+            if (items.contains(item)) {
+                System.out.println("\nsorry, " + name + " has already been added to " + cafe.getName() + "! (;-;)");
+            } else {
+                cafe.addItem(item);
+                System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! (^-^*)");
+            }
+        } catch (RatingException e) {
+            System.out.println(e.getMessage());
+        } catch (PriceException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // MODIFIES: cafe
@@ -532,7 +549,6 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: the user input be the back command or an item's name at the given cafe
     // EFFECTS: displays the menu for editing an item at given cafe
     private void displayEditItemMenu(Cafe cafe) {
         System.out.println("\nto view an item, please enter its name, to go back, enter '" + BACK_COMMAND + "':");
@@ -607,26 +623,35 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: input rating be an integer in [1,5]
+    // REQUIRES: user input be an integer
     // MODIFIES: item
     // EFFECTS: changes the rating of the given item
     private void changeRating(MenuItem item) {
         String name = item.getName();
         System.out.println("\nplease enter the new rating for " + name + ":");
         int rating = input.nextInt();
-        item.setRating(rating);
-        System.out.println("\n" + name + "'s rating has been changed!");
+        try {
+            item.setRating(rating);
+            System.out.println("\n" + name + "'s rating has been changed!");
+        } catch (RatingException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    // REQUIRES: input price be an integer >= 0
+    // REQUIRES: user input be an integer
     // MODIFIES: item
     // EFFECTS: changes the price of the given item
     private void changePrice(MenuItem item) {
         String name = item.getName();
         System.out.println("\nplease enter the new price for " + name + ":");
         int price = input.nextInt();
-        item.setPrice(price);
-        System.out.println("\n" + name + "'s price has been changed!");
+        try {
+            item.setPrice(price);
+            System.out.println("\n" + name + "'s price has been changed!");
+        } catch (PriceException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     // EFFECTS: saves the cafe log to file

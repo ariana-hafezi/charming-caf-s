@@ -5,10 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Double.parseDouble;
 
@@ -20,7 +17,7 @@ public class Cafe implements Writable {
     private final Set<String> tags;
     private final List<MenuItem> items;
 
-    // REQUIRES: name and location have non-zero length
+
     // EFFECTS: constructs a cafe with the given name and location, no tags, and no items
     public Cafe(String name, String location) {
         this.name = name;
@@ -35,7 +32,7 @@ public class Cafe implements Writable {
         tags.add(tag);
     }
 
-    // REQUIRES: tag be in the cafe's tags
+
     // MODIFIES: this
     // EFFECTS: removes the given tag from the cafe's tags
     public void removeTag(String tag) {
@@ -45,10 +42,11 @@ public class Cafe implements Writable {
     // MODIFIES: this
     // EFFECTS: adds the given item to the list of items tried at the cafe
     public void addItem(MenuItem item) {
-        items.add(item);
+        if (!items.contains(item)) {
+            items.add(item);
+        }
     }
 
-    // REQUIRES: item be in the cafe's list of items
     // MODIFIES: this
     // EFFECTS: removes the given item from the list of items tried at the cafe
     public void removeItem(MenuItem item) {
@@ -106,6 +104,23 @@ public class Cafe implements Writable {
         }
 
         return jsonArray;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Cafe cafe = (Cafe) o;
+        return Objects.equals(name, cafe.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     // getters:

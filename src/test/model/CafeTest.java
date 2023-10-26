@@ -4,20 +4,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.JsonTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 // Tests for the Cafe class.
 class CafeTest extends JsonTest {
     private Cafe testCafe;
+    private Cafe testCafeSameName;
     private MenuItem testItemA;
+    private MenuItem testItemALowerCase;
+    private MenuItem testItemADifferentRating;
     private MenuItem testItemB;
     private MenuItem testItemC;
 
     @BeforeEach
     void runBefore() {
         testCafe = new Cafe("Matchstick", "Vancouver");
+        testCafeSameName = new Cafe("Matchstick", "Calgary");
         testItemA = new MenuItem("Iced Latte", 5, 500);
+        testItemALowerCase = new MenuItem("iced latte", 5, 500);
+        testItemADifferentRating = new MenuItem("Iced Latte", 4, 500);
         testItemB = new MenuItem("Chocolate Croissant", 4, 450);
         testItemC = new MenuItem("Matcha Latte", 4, 605);
     }
@@ -46,13 +51,18 @@ class CafeTest extends JsonTest {
     void testRemoveTag() {
         testCafe.addTag("inclusive");
         testCafe.addTag("chain");
-        testCafe.removeTag("inclusive");
 
+        testCafe.removeTag("inclusive");
+        assertEquals(1, testCafe.getTags().size());
+        assertTrue(testCafe.getTags().contains("chain"));
+
+        testCafe.removeTag("cozy");
         assertEquals(1, testCafe.getTags().size());
         assertTrue(testCafe.getTags().contains("chain"));
 
         testCafe.removeTag("chain");
         assertEquals(0, testCafe.getTags().size());
+
     }
 
     @Test
@@ -61,16 +71,31 @@ class CafeTest extends JsonTest {
         assertEquals(1, testCafe.getItems().size());
         assertTrue(testCafe.getItems().contains(testItemA));
 
-        testCafe.addItem(testItemB);
+        testCafe.addItem(testItemALowerCase);
         assertEquals(2, testCafe.getItems().size());
         assertTrue(testCafe.getItems().contains(testItemA));
+        assertTrue(testCafe.getItems().contains(testItemALowerCase));
+
+        testCafe.addItem(testItemADifferentRating);
+        assertEquals(2, testCafe.getItems().size());
+        assertTrue(testCafe.getItems().contains(testItemA));
+        assertTrue(testCafe.getItems().contains(testItemALowerCase));
+
+        testCafe.addItem(testItemB);
+        assertEquals(3, testCafe.getItems().size());
+        assertTrue(testCafe.getItems().contains(testItemA));
         assertTrue(testCafe.getItems().contains(testItemB));
+        assertTrue(testCafe.getItems().contains(testItemALowerCase));
     }
 
     @Test
     void testRemoveItem() {
         testCafe.addItem(testItemA);
         testCafe.addItem(testItemB);
+
+        testCafe.removeItem(testItemB);
+        assertEquals(1, testCafe.getItems().size());
+        assertTrue(testCafe.getItems().contains(testItemA));
 
         testCafe.removeItem(testItemB);
         assertEquals(1, testCafe.getItems().size());
@@ -104,5 +129,16 @@ class CafeTest extends JsonTest {
         testCafe.addItem(testItemB);
         testCafe.addItem(testItemC);
         assertEquals(4.3, testCafe.calculateAverageRating());
+    }
+
+    @Test
+    void testEquals() {
+        assertFalse(testCafe.equals("Matchstick"));
+        assertTrue(testCafe.equals(testCafeSameName));
+    }
+
+    @Test
+    void testHashCode() {
+        assertEquals(testCafe.hashCode(), testCafeSameName.hashCode());
     }
 }

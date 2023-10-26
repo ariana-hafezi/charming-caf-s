@@ -20,10 +20,11 @@ public class CafeLog implements Writable {
     // MODIFIES: this
     // EFFECTS: adds the given cafe to the log
     public void addCafe(Cafe cafe) {
-        cafes.add(cafe);
+        if (!cafes.contains(cafe)) {
+            cafes.add(cafe);
+        }
     }
 
-    // REQUIRES: cafe be in the log
     // MODIFIES: this
     // EFFECTS: removes the given cafe from the log
     public void removeCafe(Cafe cafe) {

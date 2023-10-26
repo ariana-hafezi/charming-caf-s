@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CafeLogTest extends JsonTest {
     private CafeLog testCafeLog;
     private Cafe testCafeA;
+    private Cafe testCafeALowerCase;
+    private Cafe testCafeADifferentLocation;
     private Cafe testCafeB;
     private Cafe testCafeC;
     private Cafe testCafeD;
@@ -22,6 +24,8 @@ public class CafeLogTest extends JsonTest {
     void runBefore() {
         testCafeLog = new CafeLog();
         testCafeA = new Cafe("Matchstick", "Vancouver");
+        testCafeALowerCase = new Cafe("matchstick", "Vancouver");
+        testCafeADifferentLocation = new Cafe("Matchstick", "Calgary");
         testCafeB = new Cafe("Smoking Gun Coffee", "Chilliwack");
         testCafeC = new Cafe("Blue Chip", "Vancouver");
         testCafeD = new Cafe("Butter Baked Goods", "Vancouver");
@@ -49,17 +53,33 @@ public class CafeLogTest extends JsonTest {
     @Test
     void testAddCafe() {
         testCafeLog.addCafe(testCafeA);
-
         List<Cafe> result = testCafeLog.getCafes();
         assertEquals(1, result.size());
         assertTrue(result.contains(testCafeA));
 
-        testCafeLog.addCafe(testCafeB);
+        testCafeLog.addCafe(testCafeA);
+        result = testCafeLog.getCafes();
+        assertEquals(1, result.size());
+        assertTrue(result.contains(testCafeA));
 
+        testCafeLog.addCafe(testCafeADifferentLocation);
+        result = testCafeLog.getCafes();
+        assertEquals(1, result.size());
+        assertTrue(result.contains(testCafeA));
+
+        testCafeLog.addCafe(testCafeALowerCase);
         result = testCafeLog.getCafes();
         assertEquals(2, result.size());
         assertTrue(result.contains(testCafeA));
+        assertTrue(result.contains(testCafeALowerCase));
+
+        testCafeLog.addCafe(testCafeB);
+
+        result = testCafeLog.getCafes();
+        assertEquals(3, result.size());
+        assertTrue(result.contains(testCafeA));
         assertTrue(result.contains(testCafeB));
+        assertTrue(result.contains(testCafeALowerCase));
     }
 
     @Test
@@ -68,8 +88,12 @@ public class CafeLogTest extends JsonTest {
         testCafeLog.addCafe(testCafeB);
 
         testCafeLog.removeCafe(testCafeB);
-
         List<Cafe> result = testCafeLog.getCafes();
+        assertEquals(1, result.size());
+        assertTrue(result.contains(testCafeA));
+
+        testCafeLog.removeCafe(testCafeB);
+        result = testCafeLog.getCafes();
         assertEquals(1, result.size());
         assertTrue(result.contains(testCafeA));
 
