@@ -483,7 +483,7 @@ public class CharmingCafes {
         }
     }
 
-    // REQUIRES: user input for rating and price be integers
+    // REQUIRES: user input for rating be an integer, for price be a double
     // MODIFIES: cafe
     // EFFECTS: add item to the cafe
     private void addItemToCafe(Cafe cafe) {
@@ -492,8 +492,8 @@ public class CharmingCafes {
         String name = input.nextLine();
         System.out.println("\nplease enter a rating between 1 and 5 stars:");
         int rating = input.nextInt();
-        System.out.println("\nplease enter the price in cents:");
-        int price = input.nextInt();
+        System.out.println("\nplease enter the price in dollars:");
+        double price = input.nextDouble();
         MenuItem item;
         try {
             item = new MenuItem(name, rating, price);
@@ -615,11 +615,12 @@ public class CharmingCafes {
     private void printItemInformation(MenuItem item) {
         String name = item.getName();
         int rating = item.getRating();
-        int price = item.getPrice();
+        double price = item.getPrice();
+        String priceString = String.format("%.2f", item.getPrice());
         if (price == 0) {
             System.out.println("\n" + name + " is rated " + rating + " stars and is free!");
         } else {
-            System.out.println("\n" + name + " is rated " + rating + " stars and costs " + price + " cents");
+            System.out.println("\n" + name + " is rated " + rating + " stars and costs $" + priceString);
         }
     }
 
@@ -644,7 +645,7 @@ public class CharmingCafes {
     private void changePrice(MenuItem item) {
         String name = item.getName();
         System.out.println("\nplease enter the new price for " + name + ":");
-        int price = input.nextInt();
+        double price = input.nextDouble();
         try {
             item.setPrice(price);
             System.out.println("\n" + name + "'s price has been changed!");

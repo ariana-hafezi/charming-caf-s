@@ -7,16 +7,16 @@ import persistence.Writable;
 
 import java.util.Objects;
 
-// Represents a menu item at a cafe with a name, rating, and price in cents.
+// Represents a menu item at a cafe with a name, rating, and price in dollars.
 public class MenuItem implements Writable {
     private final String name;
     private int rating;
-    private int price;
+    private double price;
 
 
     // REQUIRES: name be non-zero length
     // EFFECTS: constructs a menu item with the given name, rating, and price
-    public MenuItem(String name, int rating, int price) throws RatingException, PriceException {
+    public MenuItem(String name, int rating, double price) throws RatingException, PriceException {
         setRating(rating);
         setPrice(price);
         this.name = name;
@@ -33,8 +33,8 @@ public class MenuItem implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the price of the item to the given price in cents
-    public void setPrice(int price) throws PriceException {
+    // EFFECTS: sets the price of the item to the given price in dollars
+    public void setPrice(double price) throws PriceException {
         if (price < 0) {
             throw new PriceException("\nsorry, that's an invalid price!");
         }
@@ -78,7 +78,7 @@ public class MenuItem implements Writable {
         return rating;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

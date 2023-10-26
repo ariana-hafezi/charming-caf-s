@@ -87,7 +87,7 @@ public class JsonReader {
     private void addItem(Cafe cafe, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int rating = jsonObject.getInt("rating");
-        int price = jsonObject.getInt("price");
+        double price = jsonObject.getDouble("price");
         MenuItem item = new MenuItem(name, rating, price);
         cafe.addItem(item);
     }

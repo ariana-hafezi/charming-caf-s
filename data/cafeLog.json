@@ -3,7 +3,7 @@
         "name": "matchstick",
         "location": "vancouver",
         "items": [{
-            "price": 550,
+            "price": 5.5,
             "name": "iced latte",
             "rating": 4
         }],
@@ -13,7 +13,7 @@
         "name": "smoking gun coffee",
         "location": "chilliwack",
         "items": [{
-            "price": 500,
+            "price": 5,
             "name": "spiced oat latte",
             "rating": 5
         }],

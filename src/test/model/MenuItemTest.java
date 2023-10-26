@@ -14,15 +14,15 @@ public class MenuItemTest {
 
     @BeforeEach
     void runBefore() {
-        testItem = new MenuItem("iced latte", 5, 600);
-        testItemSameName = new MenuItem("iced latte", 4, 700);
+        testItem = new MenuItem("iced latte", 5, 6.00);
+        testItemSameName = new MenuItem("iced latte", 4, 7.00);
     }
 
     @Test
     void testConstructor() {
         assertEquals("iced latte", testItem.getName());
         assertEquals(5, testItem.getRating());
-        assertEquals(600, testItem.getPrice());
+        assertEquals(6.00, testItem.getPrice());
     }
 
     @Test
@@ -68,8 +68,8 @@ public class MenuItemTest {
     @Test
     void testSetPrice() {
         try {
-            testItem.setPrice(799);
-            assertEquals(799, testItem.getPrice());
+            testItem.setPrice(7.99);
+            assertEquals(7.99, testItem.getPrice());
         } catch (PriceException e) {
             fail("unexpected PriceException");
         }
