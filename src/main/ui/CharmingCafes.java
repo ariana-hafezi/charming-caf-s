@@ -502,7 +502,7 @@ public class CharmingCafes {
                 System.out.println("\nsorry, " + name + " has already been added to " + cafe.getName() + "! (;-;)");
             } else {
                 cafe.addItem(item);
-                System.out.println("\n" + name + " has been logged at " + cafe.getName() + "! yippee! (^-^*)");
+                System.out.println("\n'" + name + "' has been logged at " + cafe.getName() + "! yippee! (^-^*)");
             }
         } catch (RatingException e) {
             System.out.println(e.getMessage());

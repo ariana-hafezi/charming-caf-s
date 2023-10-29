@@ -21,5 +21,22 @@
             "inclusive",
             "cozy"
         ]
+    },
+    {
+        "name": "starbucks",
+        "location": "vancouver",
+        "items": [
+            {
+                "price": 6.5,
+                "name": "iced strawberry oat matcha latte",
+                "rating": 5
+            },
+            {
+                "price": 5,
+                "name": "peppermint hot chocolate",
+                "rating": 4
+            }
+        ],
+        "tags": []
     }
 ]}
