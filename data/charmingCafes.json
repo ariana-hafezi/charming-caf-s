@@ -1,0 +1,42 @@
+{"cafes": [
+    {
+        "name": "matchstick",
+        "location": "vancouver",
+        "items": [{
+            "price": 5.5,
+            "name": "iced latte",
+            "rating": 4
+        }],
+        "tags": ["unique"]
+    },
+    {
+        "name": "smoking gun coffee",
+        "location": "chilliwack",
+        "items": [{
+            "price": 5,
+            "name": "spiced oat latte",
+            "rating": 5
+        }],
+        "tags": [
+            "inclusive",
+            "cozy"
+        ]
+    },
+    {
+        "name": "starbucks",
+        "location": "vancouver",
+        "items": [
+            {
+                "price": 6.5,
+                "name": "iced strawberry oat matcha latte",
+                "rating": 5
+            },
+            {
+                "price": 5,
+                "name": "peppermint hot chocolate",
+                "rating": 4
+            }
+        ],
+        "tags": []
+    }
+]}
