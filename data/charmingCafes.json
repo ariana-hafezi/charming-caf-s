@@ -7,7 +7,9 @@
             "name": "iced latte",
             "rating": 4
         }],
-        "tags": ["unique"]
+        "tags": [
+          "unique",
+          "cozy"]
     },
     {
         "name": "smoking gun coffee",

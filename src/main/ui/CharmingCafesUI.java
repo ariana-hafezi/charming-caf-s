@@ -1,6 +1,5 @@
 package ui;
 
-import model.Cafe;
 import model.CafeLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -12,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 // CharmingCafesUI is a graphical ui for a cafe log application.
 public class CharmingCafesUI extends JFrame {
@@ -58,7 +56,7 @@ public class CharmingCafesUI extends JFrame {
     }
 
     private DocumentListener createDocumentListener() {
-        DocumentListener documentListener = new DocumentListener() {
+        return new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 cafeList.filterCafes(cafeLog.getCafes(), field.getText());
@@ -73,7 +71,6 @@ public class CharmingCafesUI extends JFrame {
             public void changedUpdate(DocumentEvent e) {
             }
         };
-        return documentListener;
     }
 
 
