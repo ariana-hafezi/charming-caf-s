@@ -40,7 +40,7 @@ public class CharmingCafesUI extends JFrame {
         createJTextField();
         createButtonPanel();
 
-        setTitle("charming cafés");
+        setTitle("charming cafes");
         setSize(WIDTH, HEIGHT);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.decode(COLOR));
@@ -221,11 +221,11 @@ public class CharmingCafesUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String name = (String) JOptionPane.showInputDialog(null,
-                    "please enter the café's name:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
+                    "please enter the cafe's name:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                     coffeeIcon, null, null);
             if (name.equals("")) {
                 String location = (String) JOptionPane.showInputDialog(null,
-                        "please enter the café's location:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
+                        "please enter the cafe's location:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                         coffeeIcon, null, null);
                 Cafe cafe = new Cafe(name, location);
                 cafeList.addCafe(cafe);
