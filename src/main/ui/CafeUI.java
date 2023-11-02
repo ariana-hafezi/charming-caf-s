@@ -18,7 +18,7 @@ public class CafeUI extends JFrame {
         this.cafe = cafe;
         this.home = home;
 
-        setTitle("charming cafés - " + cafe.getName());
+        setTitle("charming cafes - " + cafe.getName());
         setSize(WIDTH, HEIGHT);
         setResizable(false);
 
