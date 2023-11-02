@@ -7,9 +7,7 @@
             "name": "iced latte",
             "rating": 4
         }],
-        "tags": [
-          "unique",
-          "cozy"]
+        "tags": ["unique"]
     },
     {
         "name": "smoking gun coffee",
@@ -39,6 +37,12 @@
                 "rating": 4
             }
         ],
+        "tags": []
+    },
+    {
+        "name": "blue chip",
+        "location": "vancouver",
+        "items": [],
         "tags": []
     }
 ]}

@@ -244,4 +244,11 @@ public class CafeLogTest extends JsonTest {
 
         assertEquals(2, readCafes.size());
     }
+
+    @Test
+    void testGetCafe() {
+        testCafeLog.addCafe(testCafeA);
+        testCafeLog.addCafe(testCafeB);
+        assertEquals(testCafeA, testCafeLog.getCafe(testCafeA.getName()));
+    }
 }

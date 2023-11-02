@@ -81,11 +81,22 @@ public class CafeLog implements Writable {
     private JSONArray cafesToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Cafe cafe :  cafes) {
+        for (Cafe cafe : cafes) {
             jsonArray.put(cafe.toJson());
         }
 
         return jsonArray;
+    }
+
+    // EFFECTS: returns the cafe with the given name
+    public Cafe getCafe(String name) {
+        Cafe namedCafe = null;
+        for (Cafe cafe : cafes) {
+            if (cafe.getName().equals(name)) {
+                namedCafe = cafe;
+            }
+        }
+        return namedCafe;
     }
 
     // getters:
