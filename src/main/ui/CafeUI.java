@@ -4,7 +4,6 @@ import model.Cafe;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 
 // CafeUI is a graphical UI for a given cafe in the charming cafes application.
 public class CafeUI extends JFrame {
@@ -37,7 +36,7 @@ public class CafeUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             home.setVisible(true);
-            processWindowEvent(new WindowEvent(CafeUI.this, WindowEvent.WINDOW_CLOSED));
+            CafeUI.this.setVisible(false);
         }
     }
 }
