@@ -46,6 +46,7 @@ public class CharmingCafesUI extends JFrame {
         getContentPane().setBackground(Color.decode(COLOR));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         addMenu();
         add(field, BorderLayout.SOUTH);
@@ -223,13 +224,15 @@ public class CharmingCafesUI extends JFrame {
             String name = (String) JOptionPane.showInputDialog(null,
                     "please enter the cafe's name:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                     coffeeIcon, null, null);
-            if (name.equals("")) {
+            if (name != null) {
                 String location = (String) JOptionPane.showInputDialog(null,
                         "please enter the cafe's location:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                         coffeeIcon, null, null);
-                Cafe cafe = new Cafe(name, location);
-                cafeList.addCafe(cafe);
-                addCafe(cafe);
+                if (location != null) {
+                    Cafe cafe = new Cafe(name, location);
+                    cafeList.addCafe(cafe);
+                    addCafe(cafe);
+                }
             }
         }
     }

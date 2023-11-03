@@ -10,17 +10,16 @@ import java.awt.event.WindowEvent;
 public class CafeUI extends JFrame {
     private static final int WIDTH = 550;
     private static final int HEIGHT = 350;
-    private Cafe cafe;
     private final CharmingCafesUI home;
 
     // EFFECTS: constructs a new CafeUI with the given cafe and charming cafes home page
     public CafeUI(Cafe cafe, CharmingCafesUI home) {
-        this.cafe = cafe;
         this.home = home;
 
         setTitle("charming cafes - " + cafe.getName());
         setSize(WIDTH, HEIGHT);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         JButton backButton = new JButton(new BackAction());
         add(backButton);
@@ -38,7 +37,7 @@ public class CafeUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             home.setVisible(true);
-            CafeUI.this.dispatchEvent(new WindowEvent(CafeUI.this, WindowEvent.WINDOW_CLOSING));
+            processWindowEvent(new WindowEvent(CafeUI.this, WindowEvent.WINDOW_CLOSED));
         }
     }
 }
