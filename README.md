@@ -29,3 +29,14 @@ a charming app where I could keep a detailed record of them.
 - As a user, I want to be given the option to save changes to my cafe log.
 - As a user, I want to be given the option to load my cafe log.
 
+## Instructions for Grader
+When running CharmingCafesUI:
+- You can generate the first required action by clicking the "add cafe" button and inputting a name and location
+  (the name must be unique, and both a name and location must be added).
+- You can delete a cafe by selecting a cafe in the list and clicking the "delete cafe" button.
+- You can filter the list of cafes by entering a tag in the text field.
+- You can rank the cafes my average rating by pressing rank in the menu bar.
+- You can locate my visual component by looking on the first page, or by selecting a cafe, pressing "open cafe",
+  and then viewing the "cafe" tab of the JFrame that opens.
+- You can save the state of my application by pressing "file", then "save" in the menu bar of the main menu.
+- You can reload the state of my application by pressing "file", then "load" in the menu bar of the main menu.
