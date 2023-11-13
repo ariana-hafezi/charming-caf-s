@@ -142,4 +142,13 @@ class CafeTest extends JsonTest {
     void testHashCode() {
         assertEquals(testCafe.hashCode(), testCafeSameName.hashCode());
     }
+
+    @Test
+    void testGetItem() {
+        testCafe.addItem(testItemA);
+        testCafe.addItem(testItemB);
+        testCafe.addItem(testItemC);
+        assertEquals(testItemA, testCafe.getItem("Iced Latte"));
+        assertNull(testCafe.getItem("croissant"));
+    }
 }

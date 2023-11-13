@@ -1,9 +1,10 @@
-package ui;
+package ui.graphical;
 
 import model.Cafe;
 import model.CafeLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.graphical.lists.CafeList;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -18,16 +19,20 @@ import java.util.List;
 public class CharmingCafesUI extends JFrame {
     private static final int WIDTH = 550;
     private static final int HEIGHT = 350;
-    private static final String COLOR = "#e6d1ba";
+    protected static final String FONT = "Sans Serif";
+    protected static final int FONT_SIZE = 14;
+    public static final String COLOUR = "#e6d1ba";
     private static final String FILE = "./data/charmingCafes.json";
-    private static final ImageIcon coffeeIcon = new ImageIcon("coffee cup.png");
+    private static final ImageIcon icon = new ImageIcon("./data/coffee cup.png");
 
     private CafeLog cafeLog;
     private JsonWriter writer;
     private JsonReader reader;
 
+    private JPanel mainPanel;
     private CafeList cafeList;
-    private JTextField field;
+    private JPanel textFieldPanel;
+    private JTextField textField;
     private JPanel buttonPanel;
 
     // EFFECTS: creates a new CharmingCafesUI
@@ -37,21 +42,25 @@ public class CharmingCafesUI extends JFrame {
         reader = new JsonReader(FILE);
 
         cafeList = new CafeList();
-        createJTextField();
+        createTextFieldPanel();
         createButtonPanel();
+        createMainPanel();
 
         setTitle("charming cafes");
         setSize(WIDTH, HEIGHT);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(Color.decode(COLOR));
+        getContentPane().setBackground(Color.decode(COLOUR));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
 
         addMenu();
-        add(field, BorderLayout.SOUTH);
-        add(cafeList, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.EAST);
+
+        JPanel west = new JPanel();
+        west.setBackground(Color.decode(COLOUR));
+        add(west, BorderLayout.WEST);
 
         setVisible(true);
     }
@@ -63,23 +72,49 @@ public class CharmingCafesUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates JTextField
-    private void createJTextField() {
-        field = new JTextField(20);
-        field.getDocument().addDocumentListener(createDocumentListener());
+    // EFFECTS: creates main panel for charming cafes
+    private void createMainPanel() {
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.setBackground(Color.decode(COLOUR));
+        mainPanel.add(cafeList, BorderLayout.CENTER);
+        mainPanel.add(textFieldPanel, BorderLayout.SOUTH);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates panel with JTextField
+    private void createTextFieldPanel() {
+        textField = new JTextField(15);
+        textField.getDocument().addDocumentListener(createDocumentListener());
+        textField.setPreferredSize(new Dimension(500, 10));
+
+        textFieldPanel = new JPanel();
+        textFieldPanel.setBackground(Color.decode(COLOUR));
+        textFieldPanel.setLayout(new GridLayout(3, 1, 10, 10));
+
+        JLabel label = new JLabel();
+        Font font = new Font(FONT, Font.PLAIN, FONT_SIZE);
+        label.setText("\tenter a tag:");
+        label.setFont(font);
+
+        textFieldPanel.add(label, 0);
+        textFieldPanel.add(textField, 1);
+        textFieldPanel.add(new JLabel(), 2);
     }
 
     // EFFECTS: creates DocumentListener for text field, to filter cafes by tag
     private DocumentListener createDocumentListener() {
         return new DocumentListener() {
+            // EFFECTS: filters cafes if there is an insert into the text field
             @Override
             public void insertUpdate(DocumentEvent e) {
-                cafeList.filterCafes(cafeLog.getCafes(), field.getText());
+                cafeList.filterCafes(cafeLog.getCafes(), textField.getText());
             }
 
+            // EFFECTS: filters cafes if there is a removal from the text field
             @Override
             public void removeUpdate(DocumentEvent e) {
-                cafeList.filterCafes(cafeLog.getCafes(), field.getText());
+                cafeList.filterCafes(cafeLog.getCafes(), textField.getText());
             }
 
             @Override
@@ -133,10 +168,10 @@ public class CharmingCafesUI extends JFrame {
                 writer.close();
                 String message = "saved! yippee! (^-^*)";
                 JOptionPane.showMessageDialog(null, message, "save",
-                        JOptionPane.INFORMATION_MESSAGE, coffeeIcon);
+                        JOptionPane.INFORMATION_MESSAGE, icon);
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(null, "couldn't save", "save error",
-                        JOptionPane.ERROR_MESSAGE, coffeeIcon);
+                        JOptionPane.ERROR_MESSAGE, icon);
             }
         }
     }
@@ -157,10 +192,10 @@ public class CharmingCafesUI extends JFrame {
                 cafeLog = reader.read();
                 cafeList.loadCafes(cafeLog.getCafes());
                 JOptionPane.showMessageDialog(null, "loaded! (^-^*)", "load",
-                        JOptionPane.INFORMATION_MESSAGE, coffeeIcon);
+                        JOptionPane.INFORMATION_MESSAGE, icon);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "sorry, unable to load! (;-;)",
-                        "load error", JOptionPane.INFORMATION_MESSAGE, coffeeIcon);
+                        "load error", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }
@@ -192,10 +227,10 @@ public class CharmingCafesUI extends JFrame {
                 }
             }
 
-            ImageIcon icon = new ImageIcon("star.png");
+            ImageIcon starIcon = new ImageIcon("star.png");
 
             JOptionPane.showMessageDialog(null, message.toString(), "ranked cafes",
-                    JOptionPane.INFORMATION_MESSAGE, icon);
+                    JOptionPane.INFORMATION_MESSAGE, starIcon);
         }
     }
 
@@ -203,12 +238,12 @@ public class CharmingCafesUI extends JFrame {
     // EFFECTS: creates a button panel
     private void createButtonPanel() {
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,1));
+        buttonPanel.setLayout(new GridLayout(4,2));
         buttonPanel.add(new JButton(new AddCafeAction()));
         buttonPanel.add(new JButton(new DeleteCafeAction()));
         buttonPanel.add(new JButton((new OpenCafeAction())));
-        buttonPanel.add(new JLabel(coffeeIcon));
-        buttonPanel.setBackground(Color.decode(COLOR));
+        buttonPanel.add(new JLabel(icon));
+        buttonPanel.setBackground(Color.decode(COLOUR));
     }
 
     // Represents an action to add a cafe to the log.
@@ -223,14 +258,14 @@ public class CharmingCafesUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String name = (String) JOptionPane.showInputDialog(null,
                     "please enter the cafe's name:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
-                    coffeeIcon, null, null);
+                    icon, null, null);
             if (name != null) {
                 String location = (String) JOptionPane.showInputDialog(null,
                         "please enter the cafe's location:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
-                        coffeeIcon, null, null);
+                        icon, null, null);
                 if (location != null) {
                     Cafe cafe = new Cafe(name, location);
-                    cafeList.addCafe(cafe);
+                    cafeList.add(cafe.getName());
                     addCafe(cafe);
                 }
             }
@@ -248,7 +283,7 @@ public class CharmingCafesUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String name = cafeList.getSelectedValue();
-            cafeList.deleteCafe(name);
+            cafeList.delete(name);
 
             Cafe cafe = new Cafe(name, "");
             cafeLog.removeCafe(cafe);
@@ -269,7 +304,7 @@ public class CharmingCafesUI extends JFrame {
             if (name != null) {
                 Cafe cafe = cafeLog.getCafe(name);
                 new CafeUI(cafe, CharmingCafesUI.this);
-                setVisible(false);
+                CharmingCafesUI.this.setVisible(false);
             }
         }
     }

@@ -53,6 +53,18 @@ public class Cafe implements Writable {
         items.remove(item);
     }
 
+    // MODIFIES: this
+    // EFFECTS: returns item with given name if it has been logged at this cafe
+    public MenuItem getItem(String name) {
+        MenuItem i = null;
+        for (MenuItem item : items) {
+            if (item.getName().equals(name)) {
+                i = item;
+            }
+        }
+        return i;
+    }
+
     // EFFECTS: returns the average rating of every item rated at a cafe to one decimal place
     public double calculateAverageRating() {
         int numItems = 0;

@@ -2,11 +2,18 @@
     {
         "name": "matchstick",
         "location": "vancouver",
-        "items": [{
-            "price": 5.5,
-            "name": "iced latte",
-            "rating": 4
-        }],
+        "items": [
+            {
+                "price": 5.5,
+                "name": "iced latte",
+                "rating": 4
+            },
+            {
+                "price": 4,
+                "name": "mocha slush",
+                "rating": 5
+            }
+        ],
         "tags": ["unique"]
     },
     {
@@ -37,6 +44,6 @@
                 "rating": 4
             }
         ],
-        "tags": []
+        "tags": ["chain"]
     }
 ]}
