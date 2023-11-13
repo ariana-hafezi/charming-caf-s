@@ -1,8 +1,5 @@
 package ui.graphical.lists;
 
-import model.MenuItem;
-
-import java.util.List;
 import java.util.Set;
 
 // Represents a JPanel for the list of tags for a cafe.

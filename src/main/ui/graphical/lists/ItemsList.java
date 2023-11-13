@@ -1,6 +1,5 @@
 package ui.graphical.lists;
 
-import model.Cafe;
 import model.MenuItem;
 
 import java.util.List;

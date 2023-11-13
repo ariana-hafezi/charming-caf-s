@@ -21,8 +21,8 @@ public class CafeUI extends JFrame {
     private static final int TAGS_INDEX = 2;
 
     private final CharmingCafesUI home;
+    private final Cafe cafe;
     private JTabbedPane tabs;
-    private Cafe cafe;
 
     // EFFECTS: constructs a new CafeUI with the given cafe and charming cafes home page
     public CafeUI(Cafe cafe, CharmingCafesUI home) {

@@ -2,7 +2,6 @@ package ui.graphical.tabs;
 
 import model.Cafe;
 import ui.graphical.CafeUI;
-import ui.graphical.CharmingCafesUI;
 
 import javax.swing.*;
 import java.awt.*;

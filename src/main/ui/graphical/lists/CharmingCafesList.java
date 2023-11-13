@@ -1,7 +1,5 @@
 package ui.graphical.lists;
 
-import model.Cafe;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

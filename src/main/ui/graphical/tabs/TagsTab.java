@@ -1,7 +1,6 @@
 package ui.graphical.tabs;
 
 import model.Cafe;
-import model.MenuItem;
 import ui.graphical.CafeUI;
 import ui.graphical.lists.TagsList;
 
@@ -16,7 +15,7 @@ public class TagsTab extends Tab {
     private static final ImageIcon icon = new ImageIcon("./data/matcha.png");
     private TagsList tagsList;
     private JPanel buttonPanel;
-    private Cafe cafe;
+    private final Cafe cafe;
 
     // EFFECTS: creates a new tags tab with the given home
     public TagsTab(CafeUI home) {

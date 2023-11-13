@@ -19,7 +19,7 @@ public class ItemsTab extends Tab {
     private static final ImageIcon icon = new ImageIcon("./data/cake.png");
     private ItemsList itemsList;
     private JPanel buttonPanel;
-    private Cafe cafe;
+    private final Cafe cafe;
 
     // EFFECTS: creates a new items tab with the given home
     public ItemsTab(CafeUI home) {
@@ -115,12 +115,12 @@ public class ItemsTab extends Tab {
             String name = itemsList.getSelectedValue();
             if (name != null) {
                 MenuItem item = cafe.getItem(name);
-                Double price = parseDouble(DECIMAL_FORMAT.format(item.getPrice()));
+                double price = parseDouble(DECIMAL_FORMAT.format(item.getPrice()));
 
                 String message = "'" + item.getName() + "'" + " costs $" + price + " and is rated "
                         + item.getRating()  + " stars";
 
-                JOptionPane.showMessageDialog(null, message.toString(), "item information",
+                JOptionPane.showMessageDialog(null, message, "item information",
                         JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
