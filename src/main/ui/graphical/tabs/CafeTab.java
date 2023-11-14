@@ -39,8 +39,7 @@ public class CafeTab extends Tab {
         locationLabel.setHorizontalAlignment(SwingConstants.CENTER);
         locationLabel.setFont(font);
 
-        JPanel north = new JPanel();
-        north.setBackground(Color.decode(COLOUR));
+        JPanel north = createColourPanel();
         panel.add(north);
         panel.add(label);
         panel.add(locationLabel);

@@ -33,6 +33,10 @@ public abstract class CharmingCafesList extends JPanel implements ListSelectionL
         title.setText("\t" + label);
         title.setFont(font);
 
+        JPanel east = new JPanel();
+        east.setBackground(Color.decode(COLOUR));
+        add(east, BorderLayout.EAST);
+
         add(listScrollPane, BorderLayout.CENTER);
         add(title, BorderLayout.NORTH);
         setBackground(Color.decode(COLOUR));
