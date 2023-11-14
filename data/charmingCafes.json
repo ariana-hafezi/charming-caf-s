@@ -2,31 +2,32 @@
     {
         "name": "matchstick",
         "location": "vancouver",
-        "items": [
-            {
-                "price": 5.5,
-                "name": "iced latte",
-                "rating": 4
-            },
-            {
-                "price": 4,
-                "name": "mocha slush",
-                "rating": 5
-            }
-        ],
+        "items": [{
+            "price": 5.5,
+            "name": "iced latte",
+            "rating": 4
+        }],
         "tags": ["unique"]
     },
     {
         "name": "smoking gun coffee",
         "location": "chilliwack",
-        "items": [{
-            "price": 5,
-            "name": "spiced oat latte",
-            "rating": 5
-        }],
+        "items": [
+            {
+                "price": 5,
+                "name": "spiced oat latte",
+                "rating": 5
+            },
+            {
+                "price": 5.75,
+                "name": "mocha slush",
+                "rating": 4
+            }
+        ],
         "tags": [
             "inclusive",
-            "cozy"
+            "cozy",
+            "nostalgic"
         ]
     },
     {
@@ -41,6 +42,11 @@
             {
                 "price": 5,
                 "name": "peppermint hot chocolate",
+                "rating": 4
+            },
+            {
+                "price": 5.15,
+                "name": "banana bread",
                 "rating": 4
             }
         ],

@@ -1,5 +1,7 @@
 package ui.graphical.tabs;
 
+import exceptions.PriceException;
+import exceptions.RatingException;
 import model.Cafe;
 import model.MenuItem;
 import ui.graphical.CafeUI;
@@ -43,10 +45,11 @@ public class ItemsTab extends Tab {
     // EFFECTS: creates a button panel
     private void createButtonPanel() {
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
+        buttonPanel.setLayout(new GridLayout(5, 2));
         buttonPanel.add(new JButton(new ItemsTab.AddItemAction()));
         buttonPanel.add(new JButton(new ItemsTab.DeleteItemAction()));
         buttonPanel.add(new JButton(new ItemsTab.ViewItemAction()));
+        buttonPanel.add(new JButton(new ItemsTab.EditItemAction()));
         buttonPanel.add(new JLabel(icon));
         buttonPanel.setBackground(Color.decode(COLOUR));
     }
@@ -118,12 +121,65 @@ public class ItemsTab extends Tab {
                 double price = parseDouble(DECIMAL_FORMAT.format(item.getPrice()));
 
                 String message = "'" + item.getName() + "'" + " costs $" + price + " and is rated "
-                        + item.getRating()  + " stars";
+                        + item.getRating() + " stars";
 
                 JOptionPane.showMessageDialog(null, message, "item information",
                         JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }
+
+    // Represents an action to edit selected item.
+    private class EditItemAction extends AbstractAction {
+        EditItemAction() {
+            super("edit item");
+        }
+
+        // MODIFIES: this
+        // EFFECTS: if there is an item selected, allows user to edit its information
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String name = itemsList.getSelectedValue();
+            MenuItem item = cafe.getItem(name);
+            String stringRating = (String) JOptionPane.showInputDialog(null,
+                    "please enter new rating for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
+                    icon, null, null);
+            if (stringRating != null) {
+                int rating = Integer.parseInt(stringRating);
+                newRating(item, rating);
+            }
+
+            String stringPrice = (String) JOptionPane.showInputDialog(null,
+                    "please enter new price for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
+                    icon, null, null);
+            if (stringPrice != null) {
+                double price = Double.parseDouble(stringPrice);
+                newPrice(item, price);
+            }
+        }
+
+        // MODIFIES: this
+        // EFFECTS: changes item price
+        private void newPrice(MenuItem item, double price) {
+            try {
+                item.setPrice(price);
+            } catch (PriceException e) {
+                JOptionPane.showMessageDialog(null, "invalid price", "edit item error",
+                        JOptionPane.ERROR_MESSAGE, icon);
+            }
+        }
+
+        // MODIFIES: this
+        // EFFECTS: changes item rating
+        private void newRating(MenuItem item, int rating) {
+            try {
+                item.setRating(rating);
+            } catch (RatingException e) {
+                JOptionPane.showMessageDialog(null, "invalid rating", "edit item error",
+                        JOptionPane.ERROR_MESSAGE, icon);
+            }
+        }
+    }
 }
+
 

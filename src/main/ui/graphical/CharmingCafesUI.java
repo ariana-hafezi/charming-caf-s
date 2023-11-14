@@ -218,7 +218,7 @@ public class CharmingCafesUI extends JFrame {
             if (cafes.isEmpty()) {
                 message = new StringBuilder("sorry, there are no cafes (;-;)");
             } else {
-                message = new StringBuilder("the ranking: \n");
+                message = new StringBuilder("ranking: \n");
                 for (Cafe cafe : cafes) {
                     String name = cafe.getName();
                     double rating = cafe.calculateAverageRating();
