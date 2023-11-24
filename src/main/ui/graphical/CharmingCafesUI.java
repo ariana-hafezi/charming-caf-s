@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+// Note: Code influenced by AlarmSystem example: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git
 // CharmingCafesUI is a graphical ui for a cafe log application.
 public class CharmingCafesUI extends JFrame {
     private static final int WIDTH = 550;
@@ -144,11 +145,6 @@ public class CharmingCafesUI extends JFrame {
     private void addMenuItem(JMenu menu, AbstractAction action) {
         JMenuItem menuItem = new JMenuItem(action);
         menu.add(menuItem);
-    }
-
-    // EFFECTS: runs the CharmingCafesUI
-    public static void main(String[] args) {
-        new CharmingCafesUI();
     }
 
     // Represents a save action to save the cafe log.
@@ -307,5 +303,10 @@ public class CharmingCafesUI extends JFrame {
                 CharmingCafesUI.this.setVisible(false);
             }
         }
+    }
+
+    // EFFECTS: runs the CharmingCafesUI
+    public static void main(String[] args) {
+        new CharmingCafesUI();
     }
 }

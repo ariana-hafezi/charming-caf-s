@@ -5,6 +5,7 @@ import model.Cafe;
 import java.util.List;
 import java.util.Set;
 
+// Note: Code influenced by ListDemo: https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
 // Represents a JPanel for the list of cafes in a log.
 public class CafeList extends CharmingCafesList {
 
