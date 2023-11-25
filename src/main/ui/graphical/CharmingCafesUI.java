@@ -2,6 +2,8 @@ package ui.graphical;
 
 import model.Cafe;
 import model.CafeLog;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphical.lists.CafeList;
@@ -11,6 +13,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -41,6 +45,7 @@ public class CharmingCafesUI extends JFrame {
         cafeLog = new CafeLog();
         writer = new JsonWriter(FILE);
         reader = new JsonReader(FILE);
+        addWindowListener(new WindowAction());
 
         cafeList = new CafeList();
         createTextFieldPanel();
@@ -302,6 +307,26 @@ public class CharmingCafesUI extends JFrame {
                 new CafeUI(cafe, CharmingCafesUI.this);
                 CharmingCafesUI.this.setVisible(false);
             }
+        }
+    }
+
+    // Represents an action to open the selected cafe in the log.
+    private class WindowAction extends WindowAdapter {
+        WindowAction() {
+            super();
+        }
+
+        // MODIFIES: this
+        // EFFECTS: if there is a cafe selected, opens a CafeUI JFrame for that cafe, and sets this to not visible
+        @Override
+        public void windowClosing(WindowEvent e) {
+            printEventLog(EventLog.getInstance());
+        }
+    }
+
+    private void printEventLog(EventLog eventLog) {
+        for (Event event : eventLog) {
+            System.out.println(event.getDate() + "\n" + event.getDescription() + "\n");
         }
     }
 

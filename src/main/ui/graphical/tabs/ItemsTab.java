@@ -144,7 +144,7 @@ public class ItemsTab extends Tab {
             String stringRating = (String) JOptionPane.showInputDialog(null,
                     "please enter new rating for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (stringRating != null) {
+            if (!stringRating.equals("")) {
                 int rating = Integer.parseInt(stringRating);
                 newRating(item, rating);
             }
@@ -152,7 +152,7 @@ public class ItemsTab extends Tab {
             String stringPrice = (String) JOptionPane.showInputDialog(null,
                     "please enter new price for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (stringPrice != null) {
+            if (!stringPrice.equals("")) {
                 double price = Double.parseDouble(stringPrice);
                 newPrice(item, price);
             }

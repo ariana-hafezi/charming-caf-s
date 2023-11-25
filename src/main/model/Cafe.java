@@ -30,6 +30,7 @@ public class Cafe implements Writable {
     // EFFECTS: adds the given tag to the cafe's tags, doesn't allow duplicates
     public void addTag(String tag) {
         tags.add(tag);
+        EventLog.getInstance().logEvent(new Event("tag '" + tag + "' added to " + name));
     }
 
 
@@ -37,6 +38,7 @@ public class Cafe implements Writable {
     // EFFECTS: removes the given tag from the cafe's tags
     public void removeTag(String tag) {
         tags.remove(tag);
+        EventLog.getInstance().logEvent(new Event("tag '" + tag + "' removed from " + name));
     }
 
     // MODIFIES: this
@@ -44,6 +46,7 @@ public class Cafe implements Writable {
     public void addItem(MenuItem item) {
         if (!items.contains(item)) {
             items.add(item);
+            EventLog.getInstance().logEvent(new Event("item '" + item.getName() + "' added to " + name));
         }
     }
 
@@ -51,6 +54,7 @@ public class Cafe implements Writable {
     // EFFECTS: removes the given item from the list of items tried at the cafe
     public void removeItem(MenuItem item) {
         items.remove(item);
+        EventLog.getInstance().logEvent(new Event("item '" + item.getName() + "' removed from " + name));
     }
 
     // MODIFIES: this

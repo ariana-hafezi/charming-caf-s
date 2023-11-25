@@ -22,6 +22,7 @@ public class CafeLog implements Writable {
     public void addCafe(Cafe cafe) {
         if (!cafes.contains(cafe)) {
             cafes.add(cafe);
+            EventLog.getInstance().logEvent(new Event("cafe '" + cafe.getName() + "' added"));
         }
     }
 
@@ -29,6 +30,7 @@ public class CafeLog implements Writable {
     // EFFECTS: removes the given cafe from the log
     public void removeCafe(Cafe cafe) {
         cafes.remove(cafe);
+        EventLog.getInstance().logEvent(new Event("cafe '" + cafe.getName() + "' removed"));
     }
 
     // EFFECTS: returns the cafes in the log that have been tagged with the given tag
@@ -65,6 +67,7 @@ public class CafeLog implements Writable {
 
         sortCafes.sort(new AverageRatingComparator());
 
+        EventLog.getInstance().logEvent(new Event("cafes ranked"));
         return sortCafes;
     }
 
