@@ -1,7 +1,6 @@
 package ui.graphical.tabs;
 
 import model.Cafe;
-import ui.graphical.CafeUI;
 import ui.graphical.lists.TagsList;
 
 import javax.swing.*;
@@ -15,13 +14,10 @@ public class TagsTab extends Tab {
     private static final ImageIcon icon = new ImageIcon("./data/matcha.png");
     private TagsList tagsList;
     private JPanel buttonPanel;
-    private final Cafe cafe;
 
     // EFFECTS: creates a new tags tab with the given home
-    public TagsTab(CafeUI home) {
-        super(home);
-
-        cafe = home.getCafe();
+    public TagsTab(Cafe cafe) {
+        super(cafe);
 
         tagsList = new TagsList();
         tagsList.loadTags(cafe.getTags());
@@ -63,7 +59,7 @@ public class TagsTab extends Tab {
                     icon, null, null);
 
             tagsList.add(tag);
-            home.addTag(tag);
+            cafe.addTag(tag);
         }
     }
 
@@ -79,7 +75,6 @@ public class TagsTab extends Tab {
         public void actionPerformed(ActionEvent e) {
             String tag = tagsList.getSelectedValue();
             tagsList.delete(tag);
-
             cafe.removeTag(tag);
         }
     }

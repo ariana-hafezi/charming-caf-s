@@ -1,7 +1,6 @@
 package ui.graphical.tabs;
 
 import model.Cafe;
-import ui.graphical.CafeUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +13,8 @@ public class CafeTab extends Tab {
     private static final ImageIcon cafeIcon = new ImageIcon("./data/cafe.png");
 
     // EFFECTS: creates a new cafe tab with the given home
-    public CafeTab(CafeUI home) {
-        super(home);
+    public CafeTab(Cafe cafe) {
+        super(cafe);
 
         createLabels();
         add(new JLabel(cafeIcon), BorderLayout.SOUTH);
@@ -28,7 +27,6 @@ public class CafeTab extends Tab {
         panel.setLayout(new GridLayout(3, 1, 10, 10));
         Font font = new Font(FONT, Font.PLAIN, FONT_SIZE);
 
-        Cafe cafe = home.getCafe();
         JLabel label = new JLabel();
         label.setText("welcome to " + cafe.getName() + "!");
         label.setHorizontalAlignment(SwingConstants.CENTER);

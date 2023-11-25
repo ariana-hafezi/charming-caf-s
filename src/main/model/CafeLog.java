@@ -32,7 +32,7 @@ public class CafeLog implements Writable {
     // EFFECTS: removes the given cafe from the log
     public void removeCafe(Cafe cafe) {
         cafes.remove(cafe);
-        EventLog.getInstance().logEvent(new Event("cafe '" + cafe.getName() + "' removed"));
+        EventLog.getInstance().logEvent(new Event("cafe '" + cafe.getName() + "' deleted"));
     }
 
     // EFFECTS: returns the cafes in the log that have been tagged with the given tag

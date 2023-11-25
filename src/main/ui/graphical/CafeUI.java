@@ -1,7 +1,7 @@
 package ui.graphical;
 
 import model.Cafe;
-import model.MenuItem;
+import model.EventLog;
 import ui.graphical.tabs.CafeTab;
 import ui.graphical.tabs.ItemsTab;
 import ui.graphical.tabs.TagsTab;
@@ -9,6 +9,8 @@ import ui.graphical.tabs.TagsTab;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import static ui.graphical.CharmingCafesUI.COLOUR;
 
@@ -28,6 +30,7 @@ public class CafeUI extends JFrame {
     public CafeUI(Cafe cafe, CharmingCafesUI home) {
         this.home = home;
         this.cafe = cafe;
+        addWindowListener(new CafeWindowAction());
 
         setTitle("charming cafes - " + this.cafe.getName());
         setSize(WIDTH, HEIGHT);
@@ -62,9 +65,9 @@ public class CafeUI extends JFrame {
     // EFFECTS: creates tabbed pane
     private void createTabbedPane() {
         tabs = new JTabbedPane();
-        JPanel cafeTab = new CafeTab(this);
-        JPanel itemsTab = new ItemsTab(this);
-        JPanel tagsTab = new TagsTab(this);
+        JPanel cafeTab = new CafeTab(cafe);
+        JPanel itemsTab = new ItemsTab(cafe);
+        JPanel tagsTab = new TagsTab(cafe);
 
         tabs.add(cafeTab, CAFE_INDEX);
         tabs.setTitleAt(CAFE_INDEX, "cafe");
@@ -78,7 +81,7 @@ public class CafeUI extends JFrame {
     }
 
     // Represents a back action to go back to charming cafes home page.
-    public class MainMenuAction extends AbstractAction {
+    private class MainMenuAction extends AbstractAction {
         MainMenuAction() {
             super("main menu");
         }
@@ -91,16 +94,17 @@ public class CafeUI extends JFrame {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds given item to the cafe
-    public void addItem(MenuItem item) {
-        cafe.addItem(item);
-    }
+    // Represents an action for when the window is closed.
+    private class CafeWindowAction extends WindowAdapter {
+        CafeWindowAction() {
+            super();
+        }
 
-    // MODIFIES: this
-    // EFFECTS: adds given tag to the cafe
-    public void addTag(String tag) {
-        cafe.addTag(tag);
+        // EFFECTS: prints event log when application is closed
+        @Override
+        public void windowClosing(WindowEvent e) {
+            home.printEventLog(EventLog.getInstance());
+        }
     }
 
     // getter

@@ -55,11 +55,18 @@
     {
         "name": "breka bakery",
         "location": "vancouver",
-        "items": [{
-            "price": 2.75,
-            "name": "pretzel roll",
-            "rating": 4
-        }],
+        "items": [
+            {
+                "price": 2.75,
+                "name": "pretzel roll",
+                "rating": 4
+            },
+            {
+                "price": 3,
+                "name": "shortbread cookie",
+                "rating": 3
+            }
+        ],
         "tags": ["24/7"]
     },
     {
@@ -70,6 +77,9 @@
             "name": "chocolate raspberry cupcake",
             "rating": 4
         }],
-        "tags": ["bakery"]
+        "tags": [
+            "affordable",
+            "bakery"
+        ]
     }
 ]}
