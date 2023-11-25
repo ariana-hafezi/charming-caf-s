@@ -5,10 +5,14 @@ import exceptions.RatingException;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
+
+import static java.lang.Double.parseDouble;
 
 // Represents a menu item at a cafe with a name, rating, and price in dollars.
 public class MenuItem implements Writable {
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".00");
     private final String name;
     private int rating;
     private double price;
@@ -17,10 +21,9 @@ public class MenuItem implements Writable {
     // REQUIRES: name be non-zero length
     // EFFECTS: constructs a menu item with the given name, rating, and price
     public MenuItem(String name, int rating, double price) throws RatingException, PriceException {
+        this.name = name;
         setRating(rating);
         setPrice(price);
-        this.name = name;
-
     }
 
     // MODIFIES: this
@@ -30,6 +33,7 @@ public class MenuItem implements Writable {
             throw new RatingException("\nsorry, that's an invalid rating!");
         }
         this.rating = rating;
+        EventLog.getInstance().logEvent(new Event(name + "'s rating changed to " + rating + " stars"));
     }
 
     // MODIFIES: this
@@ -39,6 +43,8 @@ public class MenuItem implements Writable {
             throw new PriceException("\nsorry, that's an invalid price!");
         }
         this.price = price;
+        price = parseDouble(DECIMAL_FORMAT.format(price));
+        EventLog.getInstance().logEvent(new Event(name + "'s price changed to $" + price));
     }
 
     @Override

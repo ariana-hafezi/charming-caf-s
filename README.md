@@ -40,3 +40,23 @@ When running CharmingCafesUI:
   and then viewing the "cafe" tab of the JFrame that opens.
 - You can save the state of my application by pressing "file", then "save" in the menu bar of the main menu.
 - You can reload the state of my application by pressing "file", then "load" in the menu bar of the main menu.
+
+## Phase 4: Task 2
+
+Fri Nov 24 21:00:04 PST 2023
+cafe 'butter baked goods' added
+
+Fri Nov 24 21:00:20 PST 2023
+chocolate raspberry cupcake's rating changed to 4 stars
+
+Fri Nov 24 21:00:20 PST 2023
+chocolate raspberry cupcake's price changed to $5.0
+
+Fri Nov 24 21:00:20 PST 2023
+item 'chocolate raspberry cupcake' added to butter baked goods
+
+Fri Nov 24 21:00:23 PST 2023
+tag 'bakery' added to butter baked goods
+
+Fri Nov 24 21:00:27 PST 2023
+cafes ranked

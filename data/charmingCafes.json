@@ -51,5 +51,25 @@
             }
         ],
         "tags": ["chain"]
+    },
+    {
+        "name": "breka bakery",
+        "location": "vancouver",
+        "items": [{
+            "price": 2.75,
+            "name": "pretzel roll",
+            "rating": 4
+        }],
+        "tags": ["24/7"]
+    },
+    {
+        "name": "butter baked goods",
+        "location": "vancouver",
+        "items": [{
+            "price": 5,
+            "name": "chocolate raspberry cupcake",
+            "rating": 4
+        }],
+        "tags": ["bakery"]
     }
 ]}
