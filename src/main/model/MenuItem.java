@@ -33,7 +33,7 @@ public class MenuItem implements Writable {
             throw new RatingException("\nsorry, that's an invalid rating!");
         }
         this.rating = rating;
-        EventLog.getInstance().logEvent(new Event(name + "'s rating changed to " + rating + " stars"));
+        EventLog.getInstance().logEvent(new Event(name + "'s rating set to " + rating + " stars"));
     }
 
     // MODIFIES: this
@@ -44,7 +44,7 @@ public class MenuItem implements Writable {
         }
         this.price = price;
         price = parseDouble(DECIMAL_FORMAT.format(price));
-        EventLog.getInstance().logEvent(new Event(name + "'s price changed to $" + price));
+        EventLog.getInstance().logEvent(new Event(name + "'s price set to $" + price));
     }
 
     @Override

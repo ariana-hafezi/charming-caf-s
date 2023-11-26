@@ -49,10 +49,10 @@ Fri Nov 24 21:00:04 PST 2023 <br>
 cafe 'butter baked goods' added
 
 Fri Nov 24 21:00:20 PST 2023 <br>
-chocolate raspberry cupcake's rating changed to 4 stars
+chocolate raspberry cupcake's rating set to 4 stars
 
 Fri Nov 24 21:00:20 PST 2023 <br>
-chocolate raspberry cupcake's price changed to $5.0
+chocolate raspberry cupcake's price set to $5.0
 
 Fri Nov 24 21:00:20 PST 2023 <br>
 item 'chocolate raspberry cupcake' added to butter baked goods
