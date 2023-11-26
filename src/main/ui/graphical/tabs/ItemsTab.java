@@ -69,8 +69,8 @@ public class ItemsTab extends Tab {
                     icon, null, null);
             if (name != null) {
                 String stringRating = (String) JOptionPane.showInputDialog(null,
-                        "please enter a rating for the item:", "add item", JOptionPane.INFORMATION_MESSAGE,
-                        icon, null, null);
+                        "please enter a rating from 1 to 5 stars:", "add item",
+                        JOptionPane.INFORMATION_MESSAGE, icon, null, null);
                 if (stringRating != null) {
                     String stringPrice = (String) JOptionPane.showInputDialog(null,
                             "please enter the item's price:", "add item", JOptionPane.INFORMATION_MESSAGE,
@@ -78,11 +78,23 @@ public class ItemsTab extends Tab {
                     if (stringPrice != null) {
                         double price = Double.parseDouble(stringPrice);
                         int rating = Integer.parseInt(stringRating);
-                        MenuItem item = new MenuItem(name, rating, price);
-                        itemsList.add(item.getName());
-                        home.addItem(item);
+                        addItem(name, rating, price);
                     }
                 }
+            }
+        }
+
+        private void addItem(String name, int rating, double price) {
+            try {
+                MenuItem item = new MenuItem(name, rating, price);
+                itemsList.add(item.getName());
+                home.addItem(item);
+            } catch (RatingException ratingException) {
+                JOptionPane.showMessageDialog(null, "invalid rating", "add item error",
+                        JOptionPane.ERROR_MESSAGE, icon);
+            } catch (PriceException priceException) {
+                JOptionPane.showMessageDialog(null, "invalid price", "add item error",
+                        JOptionPane.ERROR_MESSAGE, icon);
             }
         }
     }

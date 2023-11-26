@@ -11,10 +11,12 @@ import java.util.Set;
 // Represents a log of cafes the user has been to.
 public class CafeLog implements Writable {
     private final List<Cafe> cafes;
+    private final AverageRatingComparator averageRatingComparator;
 
     // EFFECTS: constructs a new cafe log with no cafes
     public CafeLog() {
         this.cafes = new ArrayList<>();
+        averageRatingComparator = new AverageRatingComparator();
     }
 
     // MODIFIES: this
@@ -65,7 +67,7 @@ public class CafeLog implements Writable {
     public List<Cafe> rankCafes() {
         List<Cafe> sortCafes = new ArrayList<>(cafes);
 
-        sortCafes.sort(new AverageRatingComparator());
+        sortCafes.sort(averageRatingComparator);
 
         EventLog.getInstance().logEvent(new Event("cafes ranked"));
         return sortCafes;
