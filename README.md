@@ -77,4 +77,4 @@ when CafeUI is closed. I would need to add two separate events to distinguish be
 I would also consider using the singleton pattern for CafeLog, as only one instance of CafeLog should exist at a time
 when the application is running. By making CafeLog a singleton class, it could be ensured that only one instance of 
 CafeLog is instantiated, and it would make this instance easily accessible. This would also eliminate the associations
-between CafeLog and both CharmingCafesUI and CharmingCafes (the console based application).
+between CafeLog and both CharmingCafesUI and CharmingCafes respectively (the console based application).
