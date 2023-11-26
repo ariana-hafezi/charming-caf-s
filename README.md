@@ -43,7 +43,7 @@ When running CharmingCafesUI:
 
 ## Phase 4
 
-# Phase 4: Task 2
+### Phase 4: Task 2
 
 Fri Nov 24 21:00:04 PST 2023
 cafe 'butter baked goods' added
@@ -63,7 +63,7 @@ tag 'bakery' added to butter baked goods
 Fri Nov 24 21:00:27 PST 2023
 cafes ranked
 
-# Phase 4: Task 3
+### Phase 4: Task 3
 To improve the design of my program, I would use the observer pattern to remove the association between my CafeUI and 
 CharmingCafesUI classes. A CafeUI is created when a cafe is opened using CharmingCafesUI's nested OpenCafeAction class.
 CharmingCafesUI passes itself as a parameter to CafeUI's constructor, and CafeUI has a field of CharmingCafesUI titled
@@ -77,4 +77,4 @@ when CafeUI is closed. I would need to add two separate events to distinguish be
 I would also consider using the singleton pattern for CafeLog, as only one instance of CafeLog should exist at a time
 when the application is running. By making CafeLog a singleton class, it could be ensured that only one instance of 
 CafeLog is instantiated, and it would make this instance easily accessible. This would also eliminate the associations
-between CafeLog and both CharmingCafesUI and CharmingCafes (which is the console based application).
+between CafeLog and both CharmingCafesUI and CharmingCafes (the console based application).
