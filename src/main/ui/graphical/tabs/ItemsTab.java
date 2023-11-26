@@ -4,7 +4,6 @@ import exceptions.PriceException;
 import exceptions.RatingException;
 import model.Cafe;
 import model.MenuItem;
-import ui.graphical.CafeUI;
 import ui.graphical.lists.ItemsList;
 
 import javax.swing.*;
@@ -21,14 +20,12 @@ public class ItemsTab extends Tab {
     private static final ImageIcon icon = new ImageIcon("./data/cake.png");
     private ItemsList itemsList;
     private JPanel buttonPanel;
-    private final Cafe cafe;
 
     // EFFECTS: creates a new items tab with the given home
-    public ItemsTab(CafeUI home) {
-        super(home);
+    public ItemsTab(Cafe cafe) {
+        super(cafe);
 
         itemsList = new ItemsList();
-        cafe = home.getCafe();
         itemsList.loadItems(cafe.getItems());
         createButtonPanel();
 
@@ -88,7 +85,7 @@ public class ItemsTab extends Tab {
             try {
                 MenuItem item = new MenuItem(name, rating, price);
                 itemsList.add(item.getName());
-                home.addItem(item);
+                cafe.addItem(item);
             } catch (RatingException ratingException) {
                 JOptionPane.showMessageDialog(null, "invalid rating", "add item error",
                         JOptionPane.ERROR_MESSAGE, icon);

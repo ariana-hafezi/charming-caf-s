@@ -152,6 +152,18 @@ public class CharmingCafesUI extends JFrame {
         menu.add(menuItem);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a button panel
+    private void createButtonPanel() {
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4,2));
+        buttonPanel.add(new JButton(new AddCafeAction()));
+        buttonPanel.add(new JButton(new DeleteCafeAction()));
+        buttonPanel.add(new JButton((new OpenCafeAction())));
+        buttonPanel.add(new JLabel(icon));
+        buttonPanel.setBackground(Color.decode(COLOUR));
+    }
+
     // Represents a save action to save the cafe log.
     private class SaveAction extends AbstractAction {
 
@@ -228,23 +240,11 @@ public class CharmingCafesUI extends JFrame {
                 }
             }
 
-            ImageIcon starIcon = new ImageIcon("star.png");
+            ImageIcon starIcon = new ImageIcon("./data/star.png");
 
             JOptionPane.showMessageDialog(null, message.toString(), "ranked cafes",
                     JOptionPane.INFORMATION_MESSAGE, starIcon);
         }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates a button panel
-    private void createButtonPanel() {
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
-        buttonPanel.add(new JButton(new AddCafeAction()));
-        buttonPanel.add(new JButton(new DeleteCafeAction()));
-        buttonPanel.add(new JButton((new OpenCafeAction())));
-        buttonPanel.add(new JLabel(icon));
-        buttonPanel.setBackground(Color.decode(COLOUR));
     }
 
     // Represents an action to add a cafe to the log.
@@ -310,21 +310,21 @@ public class CharmingCafesUI extends JFrame {
         }
     }
 
-    // Represents an action to open the selected cafe in the log.
+    // Represents an action for when the window is closed.
     private class WindowAction extends WindowAdapter {
         WindowAction() {
             super();
         }
 
-        // MODIFIES: this
-        // EFFECTS: if there is a cafe selected, opens a CafeUI JFrame for that cafe, and sets this to not visible
+        // EFFECTS: prints event log when application is closed
         @Override
         public void windowClosing(WindowEvent e) {
             printEventLog(EventLog.getInstance());
         }
     }
 
-    private void printEventLog(EventLog eventLog) {
+    // EFFECTS: prints the event log to consolea
+    protected void printEventLog(EventLog eventLog) {
         for (Event event : eventLog) {
             System.out.println(event.getDate() + "\n" + event.getDescription() + "\n");
         }

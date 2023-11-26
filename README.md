@@ -41,7 +41,9 @@ When running CharmingCafesUI:
 - You can save the state of my application by pressing "file", then "save" in the menu bar of the main menu.
 - You can reload the state of my application by pressing "file", then "load" in the menu bar of the main menu.
 
-## Phase 4: Task 2
+## Phase 4
+
+# Phase 4: Task 2
 
 Fri Nov 24 21:00:04 PST 2023
 cafe 'butter baked goods' added
@@ -60,3 +62,19 @@ tag 'bakery' added to butter baked goods
 
 Fri Nov 24 21:00:27 PST 2023
 cafes ranked
+
+# Phase 4: Task 3
+To improve the design of my program, I would use the observer pattern to remove the association between my CafeUI and 
+CharmingCafesUI classes. A CafeUI is created when a cafe is opened using CharmingCafesUI's nested OpenCafeAction class.
+CharmingCafesUI passes itself as a parameter to CafeUI's constructor, and CafeUI has a field of CharmingCafesUI titled
+"home". In CafeUI, when "main menu" is pressed in the menu bar, the nested MainMenuAction class sets "home" to visible.
+It would be better if instead, CharmingCafesUI implemented an Observer interface and CafeUI extended an abstract 
+Observable class. Then, when MainMenuAction's actionPerformed() method is run, CharmingCafesUI could be notified, and 
+it's update method could include the call to setVisible. In addition, in CafeUI's CafeWindowAction, CharmingCafesUI's 
+printEventLog() method is called on "home". This could also be handled by notifying CharmingCafesUI as an observer
+when CafeUI is closed. I would need to add two separate events to distinguish between these notifications. 
+
+I would also consider using the singleton pattern for CafeLog, as only one instance of CafeLog should exist at a time
+when the application is running. By making CafeLog a singleton class, it could be ensured that only one instance of 
+CafeLog is instantiated, and it would make this instance easily accessible. This would also eliminate the associations
+between CafeLog and both CharmingCafesUI and CharmingCafes (which is the console based application).

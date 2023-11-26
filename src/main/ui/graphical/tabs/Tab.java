@@ -1,6 +1,6 @@
 package ui.graphical.tabs;
 
-import ui.graphical.CafeUI;
+import model.Cafe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +12,11 @@ import static ui.graphical.CharmingCafesUI.COLOUR;
 public abstract class Tab extends JPanel {
     protected static final String FONT = "Sans Serif";
     protected static final int FONT_SIZE = 14;
-    protected final CafeUI home;
+    protected final Cafe cafe;
 
     // EFFECTS: creates a new tab with the given home
-    public Tab(CafeUI home) {
-        this.home = home;
+    public Tab(Cafe cafe) {
+        this.cafe = cafe;
         setLayout(new BorderLayout());
         setBackground(Color.decode(COLOUR));
     }
