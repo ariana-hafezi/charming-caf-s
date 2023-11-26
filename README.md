@@ -43,7 +43,7 @@ When running CharmingCafesUI:
 
 ## Phase 4
 
-# Phase 4: Task 2
+### Phase 4: Task 2
 
 Fri Nov 24 21:00:04 PST 2023
 cafe 'butter baked goods' added
@@ -63,7 +63,7 @@ tag 'bakery' added to butter baked goods
 Fri Nov 24 21:00:27 PST 2023
 cafes ranked
 
-# Phase 4: Task 3
+### Phase 4: Task 3
 To improve the design of my program, I would use the observer pattern to remove the association between my CafeUI and 
 CharmingCafesUI classes. A CafeUI is created when a cafe is opened using CharmingCafesUI's nested OpenCafeAction class.
 CharmingCafesUI passes itself as a parameter to CafeUI's constructor, and CafeUI has a field of CharmingCafesUI titled
