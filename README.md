@@ -45,22 +45,22 @@ When running CharmingCafesUI:
 
 ### Phase 4: Task 2
 
-Fri Nov 24 21:00:04 PST 2023
+Fri Nov 24 21:00:04 PST 2023 <br>
 cafe 'butter baked goods' added
 
-Fri Nov 24 21:00:20 PST 2023
+Fri Nov 24 21:00:20 PST 2023 <br>
 chocolate raspberry cupcake's rating changed to 4 stars
 
-Fri Nov 24 21:00:20 PST 2023
+Fri Nov 24 21:00:20 PST 2023 <br>
 chocolate raspberry cupcake's price changed to $5.0
 
-Fri Nov 24 21:00:20 PST 2023
+Fri Nov 24 21:00:20 PST 2023 <br>
 item 'chocolate raspberry cupcake' added to butter baked goods
 
-Fri Nov 24 21:00:23 PST 2023
+Fri Nov 24 21:00:23 PST 2023 <br>
 tag 'bakery' added to butter baked goods
 
-Fri Nov 24 21:00:27 PST 2023
+Fri Nov 24 21:00:27 PST 2023 <br>
 cafes ranked
 
 ### Phase 4: Task 3
@@ -77,4 +77,4 @@ when CafeUI is closed. I would need to add two separate events to distinguish be
 I would also consider using the singleton pattern for CafeLog, as only one instance of CafeLog should exist at a time
 when the application is running. By making CafeLog a singleton class, it could be ensured that only one instance of 
 CafeLog is instantiated, and it would make this instance easily accessible. This would also eliminate the associations
-between CafeLog and both CharmingCafesUI and CharmingCafes (the console based application).
+between CafeLog and both CharmingCafesUI and CharmingCafes respectively (the console based application).
