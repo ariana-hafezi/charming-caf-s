@@ -260,11 +260,11 @@ public class CharmingCafesUI extends JFrame {
             String name = (String) JOptionPane.showInputDialog(null,
                     "please enter the cafe's name:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (name != null) {
+            if (name != null && !name.equals("")) {
                 String location = (String) JOptionPane.showInputDialog(null,
                         "please enter the cafe's location:", "add cafe", JOptionPane.INFORMATION_MESSAGE,
                         icon, null, null);
-                if (location != null) {
+                if (location != null && !location.equals("")) {
                     Cafe cafe = new Cafe(name, location);
                     cafeList.add(cafe.getName());
                     addCafe(cafe);

@@ -57,9 +57,10 @@ public class TagsTab extends Tab {
             String tag = (String) JOptionPane.showInputDialog(null,
                     "please enter a tag:", "add tag", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-
-            tagsList.add(tag);
-            cafe.addTag(tag);
+            if (tag != (null) && !tag.equals("")) {
+                tagsList.add(tag);
+                cafe.addTag(tag);
+            }
         }
     }
 

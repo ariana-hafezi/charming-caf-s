@@ -64,15 +64,15 @@ public class ItemsTab extends Tab {
             String name = (String) JOptionPane.showInputDialog(null,
                     "please enter the item's name:", "add item", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (name != null) {
+            if (name != null && !name.equals("")) {
                 String stringRating = (String) JOptionPane.showInputDialog(null,
                         "please enter a rating from 1 to 5 stars:", "add item",
                         JOptionPane.INFORMATION_MESSAGE, icon, null, null);
-                if (stringRating != null) {
+                if (stringRating != null && !stringRating.equals("")) {
                     String stringPrice = (String) JOptionPane.showInputDialog(null,
                             "please enter the item's price:", "add item", JOptionPane.INFORMATION_MESSAGE,
                             icon, null, null);
-                    if (stringPrice != null) {
+                    if (stringPrice != null && !stringPrice.equals("")) {
                         double price = Double.parseDouble(stringPrice);
                         int rating = Integer.parseInt(stringRating);
                         addItem(name, rating, price);
@@ -153,7 +153,7 @@ public class ItemsTab extends Tab {
             String stringRating = (String) JOptionPane.showInputDialog(null,
                     "please enter new rating for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (!stringRating.equals("")) {
+            if (stringRating != (null) && !stringRating.equals("")) {
                 int rating = Integer.parseInt(stringRating);
                 newRating(item, rating);
             }
@@ -161,7 +161,7 @@ public class ItemsTab extends Tab {
             String stringPrice = (String) JOptionPane.showInputDialog(null,
                     "please enter new price for the item:", "edit item", JOptionPane.INFORMATION_MESSAGE,
                     icon, null, null);
-            if (!stringPrice.equals("")) {
+            if (stringPrice != (null) && !stringPrice.equals("")) {
                 double price = Double.parseDouble(stringPrice);
                 newPrice(item, price);
             }
