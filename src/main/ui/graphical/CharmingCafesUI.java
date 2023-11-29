@@ -123,6 +123,7 @@ public class CharmingCafesUI extends JFrame {
                 cafeList.filterCafes(cafeLog.getCafes(), textField.getText());
             }
 
+            // required by DocumentListener interface
             @Override
             public void changedUpdate(DocumentEvent e) {
             }
@@ -235,7 +236,8 @@ public class CharmingCafesUI extends JFrame {
                 for (Cafe cafe : cafes) {
                     String name = cafe.getName();
                     double rating = cafe.calculateAverageRating();
-                    message.append(rank).append(". ").append(name).append(": ").append(rating).append(" stars\n");
+                    String messageString = rank + ". " + name + ": " + rating + " stars\n";
+                    message.append(messageString);
                     rank++;
                 }
             }
@@ -249,6 +251,8 @@ public class CharmingCafesUI extends JFrame {
 
     // Represents an action to add a cafe to the log.
     private class AddCafeAction extends AbstractAction {
+
+        // EFFECTS: creates a new AddCafeAction titled "add cafe"
         AddCafeAction() {
             super("add cafe");
         }
@@ -275,6 +279,8 @@ public class CharmingCafesUI extends JFrame {
 
     // Represents an action to delete a cafe from the log.
     private class DeleteCafeAction extends AbstractAction {
+
+        // EFFECTS: creates a new DeleteCafeAction titled "delete cafe"
         DeleteCafeAction() {
             super("delete cafe");
         }
@@ -293,6 +299,8 @@ public class CharmingCafesUI extends JFrame {
 
     // Represents an action to open the selected cafe in the log.
     private class OpenCafeAction extends AbstractAction {
+
+        // EFFECTS: creates a new OpenCafeAction titled "open cafe"
         OpenCafeAction() {
             super("open cafe");
         }
@@ -312,6 +320,8 @@ public class CharmingCafesUI extends JFrame {
 
     // Represents an action for when the window is closed.
     private class WindowAction extends WindowAdapter {
+
+        // EFFECTS: creates a new WindowAction
         WindowAction() {
             super();
         }

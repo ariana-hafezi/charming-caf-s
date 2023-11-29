@@ -82,6 +82,8 @@ public class CafeUI extends JFrame {
 
     // Represents a back action to go back to charming cafes home page.
     private class MainMenuAction extends AbstractAction {
+
+        // EFFECTS: creates a new MainMenuAction titled "main menu"
         MainMenuAction() {
             super("main menu");
         }
@@ -96,6 +98,8 @@ public class CafeUI extends JFrame {
 
     // Represents an action for when the window is closed.
     private class CafeWindowAction extends WindowAdapter {
+
+        // EFFECTS: creates a new CafeWindowAction
         CafeWindowAction() {
             super();
         }

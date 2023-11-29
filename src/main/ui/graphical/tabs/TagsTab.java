@@ -46,6 +46,8 @@ public class TagsTab extends Tab {
 
     // Represents an action to add an item to the cafe.
     private class AddTagAction extends AbstractAction {
+
+        // EFFECTS: creates a new AddTagAction titled "add tag"
         AddTagAction() {
             super("add tag");
         }
@@ -66,6 +68,8 @@ public class TagsTab extends Tab {
 
     // Represents an action to delete a tag from the cafe.
     private class DeleteTagAction extends AbstractAction {
+
+        // EFFECTS: creates a new DeleteTag titled "delete tag"
         DeleteTagAction() {
             super("delete tag");
         }

@@ -9,7 +9,6 @@ import static ui.graphical.CharmingCafesUI.COLOUR;
 
 // Represents the tab for a cafe.
 public class CafeTab extends Tab {
-
     private static final ImageIcon cafeIcon = new ImageIcon("./data/cafe.png");
 
     // EFFECTS: creates a new cafe tab with the given home

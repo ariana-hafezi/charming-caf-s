@@ -81,6 +81,8 @@ public class ItemsTab extends Tab {
             }
         }
 
+        // MODIFIES: this
+        // EFFECTS: adds item to the cafe
         private void addItem(String name, int rating, double price) {
             try {
                 MenuItem item = new MenuItem(name, rating, price);
@@ -98,6 +100,8 @@ public class ItemsTab extends Tab {
 
     // Represents an action to delete an item from the cafe.
     private class DeleteItemAction extends AbstractAction {
+
+        // EFFECTS: creates a new DeleteItemAction titled "delete item"
         DeleteItemAction() {
             super("delete item");
         }
@@ -116,6 +120,8 @@ public class ItemsTab extends Tab {
 
     // Represents an action to view selected item.
     private class ViewItemAction extends AbstractAction {
+
+        // EFFECTS: creates a new ViewItemAction titled "view item"
         ViewItemAction() {
             super("view item");
         }
@@ -140,6 +146,8 @@ public class ItemsTab extends Tab {
 
     // Represents an action to edit selected item.
     private class EditItemAction extends AbstractAction {
+
+        // EFFECTS: creates a new EditItemAction titled "edit item"
         EditItemAction() {
             super("edit item");
         }
